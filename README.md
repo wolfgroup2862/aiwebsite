@@ -2,6 +2,8 @@
 
 A modern premium real estate company website built with Next.js and prepared for Vercel deployment.
 
+Original repository note: beginner to create website using AI.
+
 ## Pages
 
 - Home
