@@ -1,7 +1,5 @@
+import JaredBio from "../components/JaredBio";
+
 export default function ContactPage() {
-  return (
-    <section className="hello-page">
-      <h1>I&apos;m Jared</h1>
-    </section>
-  );
+  return <JaredBio />;
 }

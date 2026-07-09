@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "I'm Jared",
-  description: "A minimal black page with I'm Jared centered.",
+  title: "Jared | Industrial Property Specialist",
+  description:
+    "Black and white bio-style page for Jared, an industrial property specialist.",
 };
 
 export default function RootLayout({
