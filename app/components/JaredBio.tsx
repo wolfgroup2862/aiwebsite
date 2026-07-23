@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
+const ipropertyProfileUrl =
+  "https://www.iproperty.com.my/property-agent/jared-wong-623987/";
+
 const propertyTypes = [
   "Factories",
   "Warehouses",
@@ -8,6 +11,89 @@ const propertyTypes = [
   "Shop lots",
   "Commercial units",
   "Logistics spaces",
+];
+
+const ipropertyStats = [
+  { label: "Total Listings", value: "194" },
+  { label: "For Sale", value: "143" },
+  { label: "For Rent", value: "51" },
+];
+
+const ipropertyCategories = [
+  {
+    title: "Industrial & Factory",
+    description: "Factories, terrace factories, semi-detached factories, and larger industrial assets.",
+    listings: [
+      {
+        status: "Sale",
+        price: "RM 3,800,000",
+        name: "Rare TPP Semi Detached Factory",
+        location: "Taman Perindustrian Puchong, Puchong",
+        size: "6,000 sq. ft.",
+        href: "https://www.iproperty.com.my/property/puchong/rare-tpp-semi-detached-factory-taman-perindustrian-puchong-mainroad-frontage-prime-location-puchong/sale-501328659/",
+      },
+      {
+        status: "Sale",
+        price: "RM 1,800,000",
+        name: "25x80 End Lot Terrace Factory",
+        location: "Taman Perindustrian Kinrara, Bandar Kinrara",
+        size: "3,000 sq. ft.",
+        href: "https://www.iproperty.com.my/property/bandar-kinrara/beside-pavilion-bandar-kinrara-25x80-endlot-terrace-factory-prime-location-mainroad-frontage-taman-perindustrian-kinrara-bandar-kinrara/sale-501328695/",
+      },
+      {
+        status: "Sale",
+        price: "RM 13,800,000",
+        name: "Fully Extended Detached Factory",
+        location: "Bandar Kinrara Seksyen 1, Bandar Kinrara",
+        size: "13,000 sq. ft.",
+        href: "https://www.iproperty.com.my/property/bandar-kinrara/rare-fully-extended-detached-factory-freehold-bandar-kinrara-mainroad-frontage-prime-location-bandar-kinrara-seksyen-1-bandar-kinrara/sale-501328675/",
+      },
+    ],
+  },
+  {
+    title: "Shop & Commercial",
+    description: "Mainroad shop lots, freehold commercial properties, and high visibility business locations.",
+    listings: [
+      {
+        status: "Sale",
+        price: "RM 4,800,000",
+        name: "Bandar Puteri Freehold Shop",
+        location: "Bandar Puteri Puchong, Puchong",
+        size: "8,800 sq. ft.",
+        href: "https://www.iproperty.com.my/property/puchong/potential-roi-5-mainroad-frontage-hot-high-demand-area-bandar-puteri-freehold-shop-bandar-puteri-puchong-puchong/sale-501328758/",
+      },
+      {
+        status: "Sale",
+        price: "RM 8,900,000",
+        name: "Rare Corner Lot Bandar Puteri Puchong Shop",
+        location: "Bandar Puteri Puchong, Puchong",
+        size: "13,000 sq. ft.",
+        href: "https://www.iproperty.com.my/property/puchong/rare-corner-lot-mainroad-frontage-freehold-prime-locaton-bandar-puteri-puchong-shop-bandar-puteri-puchong-puchong/sale-500996097/",
+      },
+    ],
+  },
+  {
+    title: "Residential Portfolio",
+    description: "Selected residential listings Jared also carries for owners and investors.",
+    listings: [
+      {
+        status: "Sale",
+        price: "RM 3,000,000",
+        name: "Lakefront Villa",
+        location: "Cyberjaya, Selangor",
+        size: "5,300 sq. ft.",
+        href: "https://www.iproperty.com.my/property/cyberjaya/lakefront-villa/sale-100297571/",
+      },
+      {
+        status: "Sale",
+        price: "RM 1,100,000",
+        name: "Setia Eco Glades",
+        location: "Cyberjaya, Selangor",
+        size: "1,805 sq. ft.",
+        href: "https://www.iproperty.com.my/property/cyberjaya/setia-eco-glades/sale-103556376/",
+      },
+    ],
+  },
 ];
 
 const fundamentals = [
@@ -42,6 +128,7 @@ export default function JaredBio() {
         <nav aria-label="Primary navigation">
           <a href="#about">About</a>
           <a href="#properties">Properties</a>
+          <a href="#iproperty">iProperty</a>
           <a href="#services">Services</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -89,6 +176,61 @@ export default function JaredBio() {
           {propertyTypes.map((item) => (
             <span key={item}>{item}</span>
           ))}
+        </section>
+
+        <section className="iproperty-section" id="iproperty">
+          <div className="iproperty-header">
+            <div>
+              <p className="kicker">Live On iProperty</p>
+              <h2>JARED&apos;S ACTIVE PROPERTY PORTFOLIO</h2>
+              <p>
+                Jared&apos;s verified iProperty profile lists industrial,
+                commercial, and residential opportunities. The categories below
+                highlight selected listings and lead visitors to the full live
+                iProperty portfolio.
+              </p>
+            </div>
+            <a href={ipropertyProfileUrl} target="_blank" rel="noreferrer">
+              VIEW FULL IPROPERTY PROFILE
+            </a>
+          </div>
+
+          <div className="iproperty-stats" aria-label="iProperty listing totals">
+            {ipropertyStats.map((item) => (
+              <article key={item.label}>
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </article>
+            ))}
+          </div>
+
+          <div className="listing-categories">
+            {ipropertyCategories.map((category) => (
+              <section className="listing-category" key={category.title}>
+                <div className="category-heading">
+                  <h3>{category.title}</h3>
+                  <p>{category.description}</p>
+                </div>
+                <div className="listing-grid">
+                  {category.listings.map((listing) => (
+                    <a
+                      className="listing-card"
+                      href={listing.href}
+                      key={listing.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <span>{listing.status}</span>
+                      <strong>{listing.price}</strong>
+                      <h4>{listing.name}</h4>
+                      <p>{listing.location}</p>
+                      <small>{listing.size}</small>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
         </section>
 
         <section className="principles" id="services">
