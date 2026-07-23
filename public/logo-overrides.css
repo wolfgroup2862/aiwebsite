@@ -1,0 +1,19 @@
+.logo {
+  background: url("/wolf-group-logo.webp") center / contain no-repeat !important;
+  border: 0 !important;
+  color: transparent !important;
+  display: inline-flex !important;
+  flex: 0 0 auto;
+  height: 78px;
+  overflow: hidden;
+  padding: 0 !important;
+  text-indent: -9999px;
+  width: 76px;
+}
+
+@media (max-width: 560px) {
+  .logo {
+    height: 66px;
+    width: 64px;
+  }
+}
