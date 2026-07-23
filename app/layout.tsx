@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Jared Wong | Malaysia Industrial & Commercial Property Agent",
+  title: "Jared Wong | Malaysia Industrial & Commercial Property Specialist",
   description:
-    "Looking for an industrial and commercial property agent in Puchong? Jared Wong specializes in factories, warehouses, industrial land, shop lots, and commercial properties across Malaysia.",
+    "Jared Wong helps buyers, tenants, owners, and investors with factories, warehouses, industrial land, shop lots, commercial units, leasing, sales, acquisition, and advisory across Malaysia.",
 };
 
 export default function RootLayout({
