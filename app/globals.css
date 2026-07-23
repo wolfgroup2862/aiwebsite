@@ -255,13 +255,32 @@ h3 {
   color: #333;
 }
 
-.cta-band a {
+.contact-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+  margin-top: 24px;
+}
+
+.contact-details a {
+  color: #111;
+  font-size: 0.96rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.contact-actions {
+  display: grid;
+  gap: 12px;
+  min-width: 240px;
+}
+
+.cta-band .contact-actions a {
   border: 2px solid var(--black);
   color: var(--black);
   font-size: 0.88rem;
   font-weight: 950;
   letter-spacing: 0.08em;
-  min-width: 220px;
   padding: 18px 22px;
   text-align: center;
   text-transform: uppercase;
@@ -318,6 +337,10 @@ h3 {
     min-height: 430px;
   }
 
+  .contact-actions {
+    min-width: 0;
+  }
+
   .footer {
     flex-direction: column;
   }
@@ -348,7 +371,8 @@ h3 {
     min-height: 82px;
   }
 
-  .cta-band a {
+  .contact-actions,
+  .cta-band .contact-actions a {
     width: 100%;
   }
 }
