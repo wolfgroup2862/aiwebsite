@@ -143,8 +143,8 @@ export default function JaredBio() {
               first and what to inspect next.
             </p>
           </div>
-          <a href="tel:+60000000000" aria-label="Call Jared">
-            CALL JARED
+          <a href="#contact" aria-label="Contact Jared">
+            CONTACT JARED
           </a>
         </section>
       </main>
