@@ -284,7 +284,21 @@ h1 {
   background: #101010;
   border: 1px solid var(--line);
   display: grid;
-  min-height: 230px;
+  grid-template-rows: auto 1fr;
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.listing-card img {
+  aspect-ratio: 16 / 10;
+  background: #1a1a1a;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.listing-card-copy {
+  display: grid;
   padding: 20px;
 }
 
@@ -516,6 +530,10 @@ h3 {
 
   .iproperty-stats article:first-child {
     grid-column: 1 / -1;
+  }
+
+  .listing-card {
+    min-height: 0;
   }
 
   .contact-actions,
