@@ -22,7 +22,8 @@ const ipropertyStats = [
 const ipropertyCategories = [
   {
     title: "Industrial & Factory",
-    description: "Factories, terrace factories, semi-detached factories, and larger industrial assets.",
+    description:
+      "Factories, terrace factories, semi-detached factories, and larger industrial assets.",
     listings: [
       {
         status: "Sale",
@@ -30,29 +31,16 @@ const ipropertyCategories = [
         name: "Rare TPP Semi Detached Factory",
         location: "Taman Perindustrian Puchong, Puchong",
         size: "6,000 sq. ft.",
+        image:
+          "https://ipp1-cdn.pgimgs.com/listing/501328659/UPHO.381163972.V800/RARE-TPP-SEMI-DETACHED-FACTORY-TAMAN-PERINDUSTRIAN-PUCHONG-MAINROAD-FRONTAGE-PRIME-LOCATION-Puchong-Malaysia.jpg",
         href: "https://www.iproperty.com.my/property/puchong/rare-tpp-semi-detached-factory-taman-perindustrian-puchong-mainroad-frontage-prime-location-puchong/sale-501328659/",
-      },
-      {
-        status: "Sale",
-        price: "RM 1,800,000",
-        name: "25x80 End Lot Terrace Factory",
-        location: "Taman Perindustrian Kinrara, Bandar Kinrara",
-        size: "3,000 sq. ft.",
-        href: "https://www.iproperty.com.my/property/bandar-kinrara/beside-pavilion-bandar-kinrara-25x80-endlot-terrace-factory-prime-location-mainroad-frontage-taman-perindustrian-kinrara-bandar-kinrara/sale-501328695/",
-      },
-      {
-        status: "Sale",
-        price: "RM 13,800,000",
-        name: "Fully Extended Detached Factory",
-        location: "Bandar Kinrara Seksyen 1, Bandar Kinrara",
-        size: "13,000 sq. ft.",
-        href: "https://www.iproperty.com.my/property/bandar-kinrara/rare-fully-extended-detached-factory-freehold-bandar-kinrara-mainroad-frontage-prime-location-bandar-kinrara-seksyen-1-bandar-kinrara/sale-501328675/",
       },
     ],
   },
   {
     title: "Shop & Commercial",
-    description: "Mainroad shop lots, freehold commercial properties, and high visibility business locations.",
+    description:
+      "Mainroad shop lots, freehold commercial properties, and high visibility business locations.",
     listings: [
       {
         status: "Sale",
@@ -60,6 +48,8 @@ const ipropertyCategories = [
         name: "Bandar Puteri Freehold Shop",
         location: "Bandar Puteri Puchong, Puchong",
         size: "8,800 sq. ft.",
+        image:
+          "https://ipp1-cdn.pgimgs.com/listing/501328758/UPHO.381165051.V800/POTENTIAL-ROI-5-MAINROAD-FRONTAGE-HOT-HIGH-DEMAND-AREA-BANDAR-PUTERI-FREEHOLD-SHOP-Puchong-Malaysia.jpg",
         href: "https://www.iproperty.com.my/property/puchong/potential-roi-5-mainroad-frontage-hot-high-demand-area-bandar-puteri-freehold-shop-bandar-puteri-puchong-puchong/sale-501328758/",
       },
       {
@@ -68,29 +58,46 @@ const ipropertyCategories = [
         name: "Rare Corner Lot Bandar Puteri Puchong Shop",
         location: "Bandar Puteri Puchong, Puchong",
         size: "13,000 sq. ft.",
+        image:
+          "https://ipp1-cdn.pgimgs.com/listing/500996097/UPHO.287705333.V800/RARE-CORNER-LOT-MAINROAD-FRONTAGE-FREEHOLD-PRIME-LOCATON-BANDAR-PUTERI-PUCHONG-SHOP-Puchong-Malaysia.jpg",
         href: "https://www.iproperty.com.my/property/puchong/rare-corner-lot-mainroad-frontage-freehold-prime-locaton-bandar-puteri-puchong-shop-bandar-puteri-puchong-puchong/sale-500996097/",
       },
     ],
   },
   {
     title: "Residential Portfolio",
-    description: "Selected residential listings Jared also carries for owners and investors.",
+    description:
+      "Selected residential listings Jared also carries for owners and investors.",
     listings: [
       {
         status: "Sale",
-        price: "RM 3,000,000",
-        name: "Lakefront Villa",
-        location: "Cyberjaya, Selangor",
-        size: "5,300 sq. ft.",
-        href: "https://www.iproperty.com.my/property/cyberjaya/lakefront-villa/sale-100297571/",
+        price: "RM 2,100,000",
+        name: "Charms of Nusantara",
+        location: "Setia Eco Glades, Cyberjaya",
+        size: "3,342 sq. ft.",
+        image:
+          "https://ipp1-cdn.pgimgs.com/listing/100869457/UPHO.315939975.V800/Charms-of-Nusantara-Setia-Eco-Glades-Cyberjaya-Charms-of-Nusantara-Setia-Eco-Glades-Malaysia.jpeg",
+        href: "https://www.iproperty.com.my/property/cyberjaya/charms-of-nusantara-setia-eco-glades-cyberjaya/sale-100869457/",
       },
       {
         status: "Sale",
-        price: "RM 1,100,000",
-        name: "Setia Eco Glades",
+        price: "RM 500,000",
+        name: "Serin Residency",
         location: "Cyberjaya, Selangor",
-        size: "1,805 sq. ft.",
-        href: "https://www.iproperty.com.my/property/cyberjaya/setia-eco-glades/sale-103556376/",
+        size: "1,647 sq. ft.",
+        image:
+          "https://ipp1-cdn.pgimgs.com/listing/106573771/UPHO.360617208.V800/Serin-Residency-Cyberjaya-Malaysia.jpeg",
+        href: "https://www.iproperty.com.my/property/cyberjaya/serin-residency/sale-106573771/",
+      },
+      {
+        status: "Sale",
+        price: "RM 1,050,000",
+        name: "Liu Li Garden",
+        location: "Setia Eco Glades, Cyberjaya",
+        size: "2,900 sq. ft.",
+        image:
+          "https://ipp1-cdn.pgimgs.com/listing/103556376/UPHO.368225326.V800/Liu-Li-Garden-Setia-Eco-Glades-Cyberjaya-Liu-Li-Garden-Setia-Eco-Glades-Malaysia.jpeg",
+        href: "https://www.iproperty.com.my/property/cyberjaya/liu-li-garden-setia-eco-glades-cyberjaya-liu-li-garden-setia-eco-glades-cyberjaya/sale-103556376/",
       },
     ],
   },
@@ -220,11 +227,18 @@ export default function JaredBio() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <span>{listing.status}</span>
-                      <strong>{listing.price}</strong>
-                      <h4>{listing.name}</h4>
-                      <p>{listing.location}</p>
-                      <small>{listing.size}</small>
+                      <img
+                        src={listing.image}
+                        alt={`${listing.name} property photo`}
+                        loading="lazy"
+                      />
+                      <div className="listing-card-copy">
+                        <span>{listing.status}</span>
+                        <strong>{listing.price}</strong>
+                        <h4>{listing.name}</h4>
+                        <p>{listing.location}</p>
+                        <small>{listing.size}</small>
+                      </div>
                     </a>
                   ))}
                 </div>
