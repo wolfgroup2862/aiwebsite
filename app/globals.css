@@ -426,18 +426,37 @@ h3 {
 .contact-actions {
   display: grid;
   gap: 12px;
-  min-width: 240px;
+  grid-template-columns: repeat(2, minmax(150px, 1fr));
+  min-width: 340px;
 }
 
 .cta-band .contact-actions a {
+  align-items: center;
   border: 2px solid var(--black);
   color: var(--black);
-  font-size: 0.88rem;
+  display: flex;
+  font-size: 0.86rem;
   font-weight: 950;
+  gap: 12px;
+  justify-content: flex-start;
   letter-spacing: 0.08em;
-  padding: 18px 22px;
-  text-align: center;
+  min-height: 58px;
+  padding: 14px 18px;
+  text-align: left;
   text-transform: uppercase;
+}
+
+.contact-actions svg {
+  display: block;
+  fill: currentColor;
+  flex: 0 0 auto;
+  height: 22px;
+  width: 22px;
+}
+
+.cta-band .contact-actions a:hover {
+  background: var(--black);
+  color: var(--amber);
 }
 
 .footer {
@@ -539,6 +558,10 @@ h3 {
 
   .listing-card {
     min-height: 0;
+  }
+
+  .contact-actions {
+    grid-template-columns: 1fr;
   }
 
   .contact-actions,
