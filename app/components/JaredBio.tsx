@@ -142,10 +142,22 @@ export default function JaredBio() {
               size requirement, and your timeline. He can help sort what matters
               first and what to inspect next.
             </p>
+            <div className="contact-details" aria-label="Jared contact details">
+              <a href="tel:+60122971898">012-297 1898</a>
+              <a href="mailto:jaredwong.wg@gmail.com">jaredwong.wg@gmail.com</a>
+            </div>
           </div>
-          <a href="#contact" aria-label="Contact Jared">
-            CONTACT JARED
-          </a>
+          <div className="contact-actions">
+            <a
+              href="https://wa.me/60122971898"
+              aria-label="WhatsApp Jared at 012-297 1898"
+            >
+              WHATSAPP JARED
+            </a>
+            <a href="mailto:jaredwong.wg@gmail.com" aria-label="Email Jared">
+              EMAIL JARED
+            </a>
+          </div>
         </section>
       </main>
 
@@ -154,7 +166,8 @@ export default function JaredBio() {
         <p>
           Malaysia industrial and commercial property guidance for factories,
           warehouses, industrial land, shop lots, commercial units, leasing,
-          sales, acquisition, and advisory.
+          sales, acquisition, and advisory. Contact Jared at 012-297 1898 or
+          jaredwong.wg@gmail.com.
         </p>
       </footer>
     </div>
