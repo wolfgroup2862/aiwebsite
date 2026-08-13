@@ -40,3 +40,13 @@ npm run build
 4. Deploy.
 
 The project uses remote placeholder images from Unsplash, configured in `next.config.ts`.
+
+## Fish Scene Game (`/fish-game`)
+
+A small side game linked from the site footer: "如果我是一条鱼" (If I Were a Fish). Visitors write in what fish they'd be in each of four scenes (kitchen, supermarket, fish pond, temple release), and everyone's answers are visible on `/fish-game/results`.
+
+Submissions are stored via `@upstash/redis`. **Without a connected database, answers only live in server memory and are lost on restart/redeploy — this will not reliably work for 100 real participants.** To make it persistent:
+
+1. In the Vercel dashboard, open this project → **Storage** → add a **Redis** database (Upstash, via Vercel Marketplace).
+2. Vercel will inject `KV_REST_API_URL` / `KV_REST_API_TOKEN` (or `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`) into the project's environment variables automatically — no code changes needed, `lib/fish-game-store.ts` reads either naming.
+3. Redeploy so the new environment variables take effect.

@@ -539,6 +539,17 @@ h3 {
   max-width: 760px;
 }
 
+.footer-fish-link {
+  align-self: flex-start;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.footer-fish-link:hover { color: var(--amber); }
+
 @media (max-width: 1100px) {
   .property-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .listing-grid,
