@@ -593,3 +593,36 @@ h3 {
   .primary-action,
   .secondary-action { width: 100%; }
 }
+
+/* ---- FAQ + Insights (GEO) ---- */
+.faq-section { border-top: 1px solid var(--line); padding: clamp(48px, 7vw, 88px) clamp(20px, 5vw, 72px); }
+.faq-section h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin: 8px 0 28px; }
+.faq-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.faq-grid article { border: 1px solid var(--line); padding: 22px; }
+.faq-grid h3 { color: var(--amber); font-size: 1.02rem; margin: 0 0 10px; }
+.faq-grid p, .faq-more { color: var(--gray); line-height: 1.6; margin: 0; }
+.faq-more { margin-top: 22px; }
+.faq-more a, .insight-wrap a, .insight-cta a { color: var(--amber); }
+
+.insight-wrap { margin: 0 auto; max-width: 820px; padding: clamp(36px, 6vw, 72px) clamp(16px, 5vw, 32px); }
+.insight-wrap h1 { font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.12; margin: 10px 0 22px; }
+.insight-wrap h2 { color: var(--amber); font-size: 1.3rem; margin: 36px 0 12px; }
+.insight-wrap h3 { font-size: 1.05rem; margin: 20px 0 6px; }
+.insight-wrap p, .insight-wrap li { color: #deded8; font-size: 1.04rem; line-height: 1.75; }
+.insight-lead { color: var(--gray); }
+.insight-answer { background: #111; border-left: 4px solid var(--amber); margin: 0 0 12px; padding: 20px 22px; }
+.insight-answer strong { display: block; margin-bottom: 8px; }
+.insight-answer p { margin: 0; }
+.insight-list { display: grid; gap: 16px; list-style: none; margin: 32px 0 0; padding: 0; }
+.insight-list a { border: 1px solid var(--line); display: block; padding: 22px; }
+.insight-list a:hover { border-color: var(--amber); }
+.insight-list time { color: var(--muted); font-size: 0.85rem; }
+.insight-list h2 { color: var(--white); font-size: 1.2rem; margin: 6px 0 8px; }
+.insight-list p { color: var(--gray); font-size: 0.98rem; margin: 0; }
+.insight-faq { border-top: 1px solid var(--line); padding-top: 4px; }
+.insight-sources li { font-size: 0.92rem; }
+.insight-byline { border-top: 1px solid var(--line); color: var(--muted) !important; font-size: 0.9rem !important; margin-top: 40px; padding-top: 18px; }
+.insight-cta { background: var(--amber); color: #1c1a12; padding: clamp(32px, 5vw, 56px) clamp(20px, 5vw, 72px); }
+.insight-cta h2 { margin: 0 0 10px; }
+.insight-cta p { margin: 0; }
+.insight-cta a { color: #1c1a12; font-weight: 900; text-decoration: underline; }

@@ -1,4 +1,12 @@
 import Link from "next/link";
+import JsonLd from "./JsonLd";
+import { CORE_FAQS } from "../lib/site";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: CORE_FAQS.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+};
 
 const jaredCoverImage = "/jared-cover.jpg";
 const ipropertyProfileUrl = "https://www.iproperty.com.my/property-agent/jared-wong-623987/";
@@ -43,7 +51,7 @@ export default function JaredBio() {
       <div className="announcement">Need to sell, rent, or secure the right property? Talk to Jared first.</div>
       <header className="nav">
         <Link className="logo" href="/">JARED</Link>
-        <nav aria-label="Primary navigation"><a href="#about">About</a><a href="#iproperty">Properties</a><a href="#awards">Awards</a><a href="#services">Process</a><a href="#contact">Contact</a></nav>
+        <nav aria-label="Primary navigation"><a href="#about">About</a><a href="#iproperty">Properties</a><a href="#awards">Awards</a><a href="#services">Process</a><a href="#faq">FAQ</a><Link href="/insights">Insights</Link><a href="#contact">Contact</a></nav>
       </header>
       <main>
         <section className="bio-hero" id="about">
@@ -64,6 +72,7 @@ export default function JaredBio() {
         </section>
         <section className="awards-section" id="awards"><div className="awards-copy"><p className="kicker">Awards & Recognition</p><h2>PROOF OF PERFORMANCE</h2><p>A dedicated recognition page for Jared&apos;s award moments. Photos are intentionally left blank for now and can be added later.</p></div><div className="award-grid">{awards.map((item) => <article className="award-slot" key={item}><div aria-hidden="true" /><h3>{item}</h3><p>Photo space reserved</p></article>)}</div></section>
         <section className="principles" id="services"><div><p className="kicker">Simple Process</p><h2>GET A CLEAR NEXT STEP</h2></div><div className="principle-grid">{fundamentals.map((item) => <article key={item.label}><span>{item.label}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></section>
+        <section className="faq-section" id="faq"><JsonLd data={faqSchema} /><p className="kicker">FAQ</p><h2>QUICK ANSWERS</h2><div className="faq-grid">{CORE_FAQS.map((f) => <article key={f.q}><h3>{f.q}</h3><p>{f.a}</p></article>)}</div><p className="faq-more"><Link href="/insights">More answers in Insights →</Link></p></section>
         <section className="cta-band" id="contact"><div><p className="kicker">Get Your Property Reviewed</p><h2>READY TO TALK TO JARED?</h2><p>Send the location, property type, size, budget or asking price, and your timeline. Jared will help you sort what matters first.</p><div className="contact-details" aria-label="Jared contact details"><a href="tel:+60122971898">012-297 1898</a><a href={emailUrl}>jaredwong.wg@gmail.com</a><a href={facebookUrl} target="_blank" rel="noreferrer">Facebook</a><a href={instagramUrl} target="_blank" rel="noreferrer">Instagram</a></div></div><div className="contact-actions"><a href={whatsappUrl} aria-label="WhatsApp Jared at 012-297 1898"><WhatsAppLogo /><span>WhatsApp</span></a><a href={emailUrl} aria-label="Email Jared"><EmailLogo /><span>Email</span></a><a href={facebookUrl} target="_blank" rel="noreferrer" aria-label="Open Jared Wong Facebook"><FacebookLogo /><span>Facebook</span></a><a href={instagramUrl} target="_blank" rel="noreferrer" aria-label="Open Jared Wong Instagram"><InstagramLogo /><span>Instagram</span></a></div></section>
       </main>
       <footer className="footer"><span>JARED WONG</span><p>Malaysia property guidance for factories, warehouses, industrial land, shop lots, commercial units, leasing, sales, acquisition, and advisory. Contact Jared at 012-297 1898 or jaredwong.wg@gmail.com.</p></footer>
