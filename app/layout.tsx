@@ -1,37 +1,86 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import "./globals.css";
+import JsonLd from "./components/JsonLd";
+import { AGENT, SITE_DESCRIPTION, SITE_URL } from "./lib/site";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host");
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? "https";
-  const origin = host ? `${protocol}://${host}` : "https://jared-wong-a-to-z.wolfgroup2862.chatgpt.site";
-  const title = "Jared Wong — Industrial & Commercial Property Specialist";
-  const description = "Jared Wong Kim Loong (REN 07483): Industrial & Commercial Property Specialist, Associate Leader at The Roof Realty, Founder of Wolf Group, and TRR Multi Million Agent for 2023–2025.";
+const title = "Jared Wong (REN 07483) | Puchong Factory, Warehouse & Commercial Property Agent";
 
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      url: origin,
-      images: [{ url: `${origin}/og-jared-az.png`, alt: "Jared Wong — Industrial & Commercial Property Specialist" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [`${origin}/og-jared-az.png`],
-    },
-  };
-}
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: title,
+    template: "%s | Jared Wong, Puchong Commercial & Industrial Property",
+  },
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "Jared Wong – Commercial & Industrial Property",
+    title: "Jared Wong — Industrial & Commercial Property Specialist",
+    description: SITE_DESCRIPTION,
+    images: [{ url: "/og-jared-az.png", alt: "Jared Wong — Industrial & Commercial Property Specialist" }],
+    locale: "en_MY",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jared Wong — Industrial & Commercial Property Specialist",
+    description: SITE_DESCRIPTION,
+    images: ["/og-jared-az.png"],
+  },
+  robots: { index: true, follow: true },
+};
+
+const agentSchema = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "@id": `${SITE_URL}/#agent`,
+  name: `${AGENT.name} – Commercial & Industrial Property Specialist`,
+  url: SITE_URL,
+  image: `${SITE_URL}${AGENT.image}`,
+  telephone: AGENT.phone,
+  email: AGENT.email,
+  description: SITE_DESCRIPTION,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: AGENT.locality,
+    addressRegion: AGENT.region,
+    postalCode: AGENT.postalCode,
+    addressCountry: AGENT.country,
+  },
+  areaServed: AGENT.areasServed.map((name) => ({ "@type": "Place", name })),
+  knowsAbout: AGENT.specialties,
+  sameAs: AGENT.sameAs,
+  employee: {
+    "@type": "Person",
+    "@id": `${SITE_URL}/#jared`,
+    name: AGENT.name,
+    jobTitle: AGENT.jobTitle,
+    description: `${AGENT.roles.join(", ")}. ${AGENT.ren}.`,
+    worksFor: { "@type": "Organization", name: AGENT.agency },
+    telephone: AGENT.phone,
+    sameAs: AGENT.sameAs,
+  },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: "Jared Wong – Commercial & Industrial Property",
+  inLanguage: "en-MY",
+  publisher: { "@id": `${SITE_URL}/#agent` },
+};
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en-MY">
+      <head>
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM summary" />
+        <JsonLd data={agentSchema} />
+        <JsonLd data={websiteSchema} />
+      </head>
       <body>{children}</body>
     </html>
   );

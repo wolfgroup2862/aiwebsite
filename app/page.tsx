@@ -1,5 +1,45 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 import PropertyCarousel, { type PropertyGroup } from "./property-carousel";
+import JsonLd from "./components/JsonLd";
+import { getAllInsights } from "./lib/insights";
+import { CORE_FAQS } from "./lib/site";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: CORE_FAQS.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+};
+
+function QuickAnswers() {
+  const latest = getAllInsights().slice(0, 3);
+  return (
+    <section className="faq-section" id="faq" aria-labelledby="faq-title">
+      <JsonLd data={faqSchema} />
+      <SectionLabel number="05">Quick answers</SectionLabel>
+      <h2 id="faq-title">Questions,<br /><em>answered.</em></h2>
+      <div className="faq-grid">
+        {CORE_FAQS.map((f) => (
+          <article key={f.q}>
+            <h3>{f.q}</h3>
+            <p>{f.a}</p>
+          </article>
+        ))}
+      </div>
+      {latest.length > 0 && (
+        <div className="faq-insights">
+          <p className="faq-insights-label">Latest insights</p>
+          <ul>
+            {latest.map((i) => (
+              <li key={i.slug}><Link href={`/insights/${i.slug}`}>{i.title}</Link></li>
+            ))}
+          </ul>
+          <Link className="faq-more" href="/insights">All insights →</Link>
+        </div>
+      )}
+    </section>
+  );
+}
 
 const propertyGroups: PropertyGroup[] = [
   {
@@ -174,7 +214,7 @@ function PropertyPortfolio() {
 function ContactJared() {
   return (
     <section className="contact" id="contact" aria-labelledby="contact-title">
-      <SectionLabel number="05">Contact Jared</SectionLabel>
+      <SectionLabel number="06">Contact Jared</SectionLabel>
       <div className="contact-heading">
         <p>Buying, selling or leasing?</p>
         <h2 id="contact-title">Your next property move<br /><em>starts with a conversation.</em></h2>
@@ -263,6 +303,8 @@ export default function Home() {
               <a href="#recognition">Recognition</a>
               <a href="#portfolio">Properties</a>
               <a href="#reviews">Reviews</a>
+              <a href="#faq">FAQ</a>
+              <Link href="/insights">Insights</Link>
             </nav>
             <a className="header-contact" href="#contact">Let&apos;s connect</a>
           </header>
@@ -326,6 +368,7 @@ export default function Home() {
 
         <PropertyPortfolio />
         <SampleClientFeedback />
+        <QuickAnswers />
         <ContactJared />
       </main>
     </div>
