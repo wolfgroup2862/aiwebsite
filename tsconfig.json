@@ -17,25 +17,35 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
     "paths": {
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".vinext/**/*",
+    "build/**/*",
+    "db/**/*",
+    "drizzle/**/*",
+    "examples/**/*",
+    "work/**/*",
+    "worker/**/*",
+    "drizzle.config.ts",
+    "vite.config.ts"
   ]
 }
