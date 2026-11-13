@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import PropertyCarousel, { type PropertyGroup } from "./property-carousel";
+import PropertyCarousel from "./property-carousel";
+import { propertyGroups } from "./lib/listings";
 import JsonLd from "./components/JsonLd";
 import { getAllInsights } from "./lib/insights";
 import { CORE_FAQS } from "./lib/site";
@@ -16,7 +17,7 @@ function QuickAnswers() {
   return (
     <section className="faq-section" id="faq" aria-labelledby="faq-title">
       <JsonLd data={faqSchema} />
-      <SectionLabel number="05">Quick answers</SectionLabel>
+      <SectionLabel number="04">Quick answers</SectionLabel>
       <h2 id="faq-title">Questions,<br /><em>answered.</em></h2>
       <div className="faq-grid">
         {CORE_FAQS.map((f) => (
@@ -40,138 +41,6 @@ function QuickAnswers() {
     </section>
   );
 }
-
-const propertyGroups: PropertyGroup[] = [
-  {
-    category: "Commercial",
-    description: "Shops and business premises",
-    listings: [
-      {
-        id: "01",
-        category: "Commercial",
-        intent: "For Sale",
-        location: "Bandar Puteri Puchong",
-        title: "Freehold 4-Storey Shop",
-        image: "/properties/listing-02.jpg",
-        imageAlt: "Freehold four-storey shop at Bandar Puteri Puchong.",
-        price: "RM 4.8M",
-        area: "8,800 sq. ft.",
-        detail: "Freehold · Partially fitted",
-        href: "https://www.iproperty.com.my/property/puchong/potential-roi-5-mainroad-frontage-hot-high-demand-area-bandar-puteri-freehold-shop/sale-501328758/",
-      },
-      {
-        id: "02",
-        category: "Commercial",
-        intent: "For Sale",
-        location: "Bandar Puteri Puchong",
-        title: "Freehold 1.5-Storey Shop",
-        image: "/properties/listing-04.jpg",
-        imageAlt: "Freehold one-and-a-half-storey shop beside IOI Rio in Bandar Puteri Puchong.",
-        price: "RM 1.45M",
-        area: "2,000 sq. ft.",
-        detail: "Freehold · Partially fitted",
-        href: "https://www.iproperty.com.my/property/puchong/rare-unit-limited-beside-ioi-rio-development-freehold-mainroad-frontage-premium-location/sale-501545935/",
-      },
-    ],
-  },
-  {
-    category: "Industrial",
-    description: "Factories and operational space",
-    listings: [
-      {
-        id: "03",
-        category: "Industrial",
-        intent: "For Sale",
-        location: "Taman Perindustrian Puchong",
-        title: "Semi-D Factory",
-        image: "/properties/listing-01.jpg",
-        imageAlt: "Semi-detached factory at Taman Perindustrian Puchong.",
-        price: "RM 3.8M",
-        area: "6,000 sq. ft.",
-        detail: "Partially fitted",
-        href: "https://www.iproperty.com.my/property/puchong/rare-tpp-semi-detached-factory-taman-perindustrian-puchong-mainroad-frontage-prime-location-puchong/sale-501328659/",
-      },
-      {
-        id: "04",
-        category: "Industrial",
-        intent: "For Sale",
-        location: "Taman Perindustrian Kinrara",
-        title: "End-Lot Terrace Factory",
-        image: "/properties/listing-03.jpg",
-        imageAlt: "End-lot terrace factory at Taman Perindustrian Kinrara.",
-        price: "RM 1.8M",
-        area: "3,000 sq. ft.",
-        detail: "Partially fitted",
-        href: "https://www.iproperty.com.my/property/bandar-kinrara/beside-pavilion-bandar-kinrara-25-x-80-endlot-terrace-factory-prime-location-mainroad-frontage-taman-perindustrian-kinrara-bandar-kinrara/sale-501544777/",
-      },
-    ],
-  },
-  {
-    category: "Residential",
-    description: "Homes and investment residences",
-    listings: [
-      {
-        id: "05",
-        category: "Residential",
-        intent: "For Sale",
-        location: "Sejati Lakeside, Cyberjaya",
-        title: "Lake-Facing Semi-D",
-        image: "/properties/listing-05.jpg",
-        imageAlt: "Living room in a lake-facing semi-detached home at Sejati Lakeside, Cyberjaya.",
-        price: "RM 1.95M",
-        area: "3,201 sq. ft.",
-        detail: "4 beds · 4 baths",
-        href: "https://www.iproperty.com.my/property/cyberjaya/sejati-lakeside-cyberjaya/sale-501781283/",
-      },
-      {
-        id: "06",
-        category: "Residential",
-        intent: "For Sale",
-        location: "Serin Residency, Cyberjaya",
-        title: "Spacious Condominium",
-        image: "/properties/listing-06.jpg",
-        imageAlt: "Interior of a spacious condominium at Serin Residency, Cyberjaya.",
-        price: "RM 500K",
-        area: "1,647 sq. ft.",
-        detail: "3+1 beds · 4 baths",
-        href: "https://www.iproperty.com.my/property/cyberjaya/serin-residency/sale-106573771/",
-      },
-    ],
-  },
-];
-
-const sampleFeedback = [
-  {
-    client: "Jason Tan",
-    category: "Home Search",
-    title: "Dream Home, Made Simple",
-    quote: "Jared helped us find a home that truly fits our lifestyle, needs and future plans.",
-  },
-  {
-    client: "Kayen Wong",
-    category: "Industrial",
-    title: "The Right Space to Grow",
-    quote: "Jared understood our operational needs and guided us towards an industrial property with room to grow.",
-  },
-  {
-    client: "Joanne Wong",
-    category: "Commercial",
-    title: "A Smarter Business Move",
-    quote: "Jared made it easier to evaluate commercial options and choose a location that supports our business goals.",
-  },
-  {
-    client: "Jackson Liew",
-    category: "Property Owners",
-    title: "Clear, Practical Guidance",
-    quote: "Jared gave us a clear view of the options so we could make the right decision for our property.",
-  },
-  {
-    client: "Carol Tan",
-    category: "Client Service",
-    title: "Support from Start to Finish",
-    quote: "Jared was responsive, patient and professional throughout every step of the process.",
-  },
-] as const;
 
 function SectionLabel({ number, children }: { number: string; children: ReactNode }) {
   return (
@@ -214,7 +83,7 @@ function PropertyPortfolio() {
 function ContactJared() {
   return (
     <section className="contact" id="contact" aria-labelledby="contact-title">
-      <SectionLabel number="06">Contact Jared</SectionLabel>
+      <SectionLabel number="05">Contact Jared</SectionLabel>
       <div className="contact-heading">
         <p>Buying, selling or leasing?</p>
         <h2 id="contact-title">Your next property move<br /><em>starts with a conversation.</em></h2>
@@ -238,52 +107,6 @@ function ContactJared() {
   );
 }
 
-function SampleClientFeedback() {
-  return (
-    <section className="sample-feedback" id="reviews" aria-labelledby="sample-feedback-title">
-      <header className="sample-feedback-heading">
-        <SectionLabel number="04">Client feedback</SectionLabel>
-        <div>
-          <p className="sample-feedback-kicker">Five preview examples</p>
-          <h2 id="sample-feedback-title">A reputation built<br /><em>through service.</em></h2>
-        </div>
-        <p className="sample-feedback-disclaimer"><strong>Sample preview only.</strong> These are sample placeholders—not real client or Google reviews. Replace them with verified feedback before publishing.</p>
-      </header>
-
-      <ol className="sample-feedback-grid">
-        {sampleFeedback.map((item, index) => (
-          <li className={`sample-feedback-card sample-feedback-card--${index + 1}`} key={item.title}>
-            <article>
-              <div className="sample-feedback-meta">
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <span>{item.category}</span>
-              </div>
-              <blockquote>“{item.quote}”</blockquote>
-              <footer>
-                <h3>{item.client}</h3>
-                <p>{item.title}</p>
-              </footer>
-            </article>
-          </li>
-        ))}
-      </ol>
-
-      <a
-        className="sample-feedback-cta"
-        href="https://wa.me/60122971898?text=Hi%20Jared%2C%20I%27d%20like%20to%20leave%20you%20a%20review.%20Could%20you%20send%20me%20your%20official%20Google%20review%20link%3F"
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Request Jared's official Google review link via WhatsApp"
-      >
-        <span>Worked with Jared?</span>
-        <strong>Write a review for Jared</strong>
-        <small>Request the official Google review link via WhatsApp.</small>
-        <i aria-hidden="true">↗</i>
-      </a>
-    </section>
-  );
-}
-
 export default function Home() {
   return (
     <div className="site-shell" id="top">
@@ -302,7 +125,7 @@ export default function Home() {
               <a href="#credentials">Profile</a>
               <a href="#recognition">Recognition</a>
               <a href="#portfolio">Properties</a>
-              <a href="#reviews">Reviews</a>
+              <Link href="/properties">All listings</Link>
               <a href="#faq">FAQ</a>
               <Link href="/insights">Insights</Link>
             </nav>
@@ -367,7 +190,6 @@ export default function Home() {
         </section>
 
         <PropertyPortfolio />
-        <SampleClientFeedback />
         <QuickAnswers />
         <ContactJared />
       </main>

@@ -1,4 +1,5 @@
 import { getAllInsights } from "../lib/insights";
+import { allListings } from "../lib/listings";
 import { AGENT, CORE_FAQS, SITE_DESCRIPTION, SITE_URL } from "../lib/site";
 
 export const dynamic = "force-static";
@@ -23,6 +24,10 @@ export function GET() {
     "",
     "## FAQ",
     ...CORE_FAQS.flatMap((f) => [`### ${f.q}`, f.a, ""]),
+    "## Current listings (from iProperty)",
+    ...allListings.map((l) => `- ${l.title}, ${l.location} – ${l.intent}, ${l.price}, ${l.area}: ${l.href}`),
+    `- All listings: ${SITE_URL}/properties`,
+    "",
     "## Insights (Q&A articles)",
     ...insights.map((i) => `- [${i.title}](${SITE_URL}/insights/${i.slug}): ${i.answer}`),
     "",

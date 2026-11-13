@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const latest = insights[0]?.updated ?? insights[0]?.date;
   return [
     { url: SITE_URL, changeFrequency: "weekly", priority: 1 },
+    { url: `${SITE_URL}/properties`, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/insights`, lastModified: latest, changeFrequency: "daily", priority: 0.9 },
     ...insights.map((i) => ({
       url: `${SITE_URL}/insights/${i.slug}`,

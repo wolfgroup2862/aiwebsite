@@ -10,6 +10,7 @@ export default function InsightShell({ children }: { children: React.ReactNode }
         </Link>
         <nav aria-label="Primary navigation">
           <Link href="/">Home</Link>
+          <Link href="/properties">Listings</Link>
           <Link href="/insights">Insights</Link>
           <a href={AGENT.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
         </nav>
