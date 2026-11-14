@@ -122,6 +122,7 @@ export default function Home() {
               <img src="/wolf-group-logo-transparent.png" alt="Wolf Group — Stronger Together" width="3050" height="721" />
             </a>
             <nav aria-label="Primary navigation">
+              <Link href="/news">News</Link>
               <a href="#credentials">Profile</a>
               <a href="#recognition">Recognition</a>
               <a href="#portfolio">Properties</a>

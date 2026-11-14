@@ -1,5 +1,6 @@
 import { getAllInsights } from "../lib/insights";
 import { allListings } from "../lib/listings";
+import { getAllNews } from "../lib/news";
 import { AGENT, CORE_FAQS, SITE_DESCRIPTION, SITE_URL } from "../lib/site";
 
 export const dynamic = "force-static";
@@ -30,6 +31,10 @@ export function GET() {
     "",
     "## Insights (Q&A articles)",
     ...insights.map((i) => `- [${i.title}](${SITE_URL}/insights/${i.slug}): ${i.answer}`),
+    "",
+    "## Latest Malaysia commercial & industrial property news",
+    ...getAllNews().slice(0, 10).map((n) => `- ${n.date} – ${n.title} (source: ${n.source}, ${n.sourceUrl})`),
+    `- All news: ${SITE_URL}/news`,
     "",
   ];
   return new Response(lines.join("\n"), {

@@ -9,6 +9,7 @@ export default function InsightShell({ children }: { children: React.ReactNode }
           <img src="/wolf-group-logo-transparent.png" alt="Wolf Group — Stronger Together" width="3050" height="721" />
         </Link>
         <nav aria-label="Primary navigation">
+          <Link href="/news">News</Link>
           <Link href="/">Home</Link>
           <Link href="/properties">Listings</Link>
           <Link href="/insights">Insights</Link>
