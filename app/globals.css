@@ -1486,3 +1486,26 @@ img { display: block; max-width: 100%; }
 .listings-link { color: var(--brass); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
 .listings-more { margin-top: 36px; }
 .listings-more a { color: var(--brass); font-weight: 700; text-decoration: underline; }
+
+/* ---- Listings shelves (card rows) ---- */
+.shelf { margin-top: 36px; padding: clamp(20px, 3vw, 36px); background: linear-gradient(180deg, #2a211c, #1a1512); border: 1px solid rgba(170, 137, 81, 0.25); border-radius: 14px; color: var(--warm-white); }
+.shelf-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin-bottom: 20px; }
+.shelf-head h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0; letter-spacing: 0.04em; text-transform: uppercase; }
+.shelf-head p { margin: 0; color: var(--taupe); font-size: 0.85rem; letter-spacing: 0.08em; }
+.shelf-row { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(210px, 230px); gap: 16px; list-style: none; margin: 0; padding: 4px 2px 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-color: var(--brass) transparent; }
+.shelf-card { scroll-snap-align: start; }
+.shelf-card > a { display: flex; flex-direction: column; height: 100%; padding: 14px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; transition: border-color .2s, transform .2s; }
+.shelf-card > a:hover { border-color: var(--brass); transform: translateY(-3px); }
+.shelf-card.is-first > a { border: 2px solid #e0613a; box-shadow: 0 10px 30px rgba(224, 97, 58, 0.25); }
+.shelf-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.shelf-num { font-family: var(--serif); font-size: 1.9rem; line-height: 1; padding-right: 10px; border-right: 1px solid rgba(255, 255, 255, 0.25); }
+.shelf-label { display: grid; min-width: 0; }
+.shelf-label b { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.shelf-label small { color: var(--taupe); font-size: 0.72rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.shelf-card img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; }
+.shelf-card-body h3 { font-family: var(--serif); font-weight: 400; font-size: 1.1rem; margin: 12px 0 4px; }
+.shelf-price { color: var(--brass); font-weight: 700; font-size: 1.1rem; margin: 0 0 2px; }
+.shelf-meta { color: #c9c2b6; font-size: 0.8rem; margin: 0; line-height: 1.5; }
+.shelf-card--more > a { justify-content: center; align-items: center; text-align: center; gap: 10px; border-style: dashed; min-height: 300px; }
+.shelf-card--more span { color: var(--taupe); font-size: 0.85rem; }
+.shelf-card--more strong { color: var(--brass); font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; }

@@ -4,6 +4,8 @@ import JsonLd from "../components/JsonLd";
 import { allListings, IPROPERTY_PROFILE, LISTINGS_REVIEWED, propertyGroups } from "../lib/listings";
 import { SITE_URL } from "../lib/site";
 
+const CATEGORY_ZH: Record<string, string> = { Commercial: "商业", Industrial: "工业", Residential: "住宅" };
+
 export const metadata: Metadata = {
   title: "Jared Wong's Property Listings – Puchong Factories, Shops & Commercial Units",
   description:
@@ -44,27 +46,39 @@ export default function PropertiesPage() {
           ))}
         </nav>
         {propertyGroups.map((g) => (
-          <section key={g.category} id={g.category.toLowerCase()} className="listings-group">
-            <h2>{g.category}</h2>
-            <p className="listings-group-desc">{g.description}</p>
-            <ul className="listings-grid">
-              {g.listings.map((l) => (
-                <li key={l.id}>
+          <section key={g.category} id={g.category.toLowerCase()} className="shelf" aria-labelledby={`shelf-${g.category}`}>
+            <header className="shelf-head">
+              <h2 id={`shelf-${g.category}`}>{g.category}</h2>
+              <p>{CATEGORY_ZH[g.category]} · {g.listings.length} listings</p>
+            </header>
+            <ol className="shelf-row">
+              {g.listings.map((l, n) => (
+                <li key={l.id} className={n === 0 ? "shelf-card is-first" : "shelf-card"}>
                   <a href={l.href} target="_blank" rel="noreferrer">
+                    <div className="shelf-card-top">
+                      <span className="shelf-num">{String(n + 1).padStart(2, "0")}</span>
+                      <span className="shelf-label">
+                        <b>{l.intent}</b>
+                        <small>{l.location}</small>
+                      </span>
+                    </div>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={l.image} alt={l.imageAlt} loading="lazy" decoding="async" />
-                    <div>
-                      <span className="listings-tag">{l.intent}</span>
-                      <p className="listings-loc">{l.location}</p>
+                    <div className="shelf-card-body">
                       <h3>{l.title}</h3>
-                      <p className="listings-price">{l.price}</p>
-                      <p className="listings-meta">{l.area} · {l.detail}</p>
-                      <span className="listings-link">View on iProperty ↗</span>
+                      <p className="shelf-price">{l.price}</p>
+                      <p className="shelf-meta">{l.area} · {l.detail}</p>
                     </div>
                   </a>
                 </li>
               ))}
-            </ul>
+              <li className="shelf-card shelf-card--more">
+                <a href={IPROPERTY_PROFILE} target="_blank" rel="noreferrer">
+                  <span>More {g.category.toLowerCase()} listings</span>
+                  <strong>View on iProperty ↗</strong>
+                </a>
+              </li>
+            </ol>
           </section>
         ))}
         <p className="listings-more">
