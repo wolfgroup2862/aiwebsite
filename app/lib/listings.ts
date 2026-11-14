@@ -1,10 +1,11 @@
 import type { PropertyGroup, PropertyListing } from "../property-carousel";
 
-// Jared's listings, copied from his public iProperty profile.
+// Jared's listings (details copied from his own portal listings).
 // To add a listing: add an entry to the right group. The home page carousel
-// shows these, and /properties lists every one.
-export const IPROPERTY_PROFILE = "https://www.iproperty.com.my/property-agent/jared-wong-623987/";
-export const LISTINGS_REVIEWED = "15 August 2026";
+// shows these, /properties lists every one and each gets its own page at
+// /properties/<slug>. Visitors are never sent to the portal: enquiries go to
+// Jared's WhatsApp. sourceUrl is kept only so we can re-check the details.
+
 
 export const propertyGroups: PropertyGroup[] = [
   {
@@ -22,7 +23,9 @@ export const propertyGroups: PropertyGroup[] = [
         price: "RM 4.8M",
         area: "8,800 sq. ft.",
         detail: "Freehold · Partially fitted",
-        href: "https://www.iproperty.com.my/property/puchong/potential-roi-5-mainroad-frontage-hot-high-demand-area-bandar-puteri-freehold-shop/sale-501328758/",
+        slug: "freehold-4-storey-shop-bandar-puteri-puchong",
+        highlights: ["Main-road frontage", "High-demand area in Bandar Puteri", "Freehold"],
+        sourceUrl: "https://www.iproperty.com.my/property/puchong/potential-roi-5-mainroad-frontage-hot-high-demand-area-bandar-puteri-freehold-shop/sale-501328758/",
       },
       {
         id: "02",
@@ -35,7 +38,9 @@ export const propertyGroups: PropertyGroup[] = [
         price: "RM 1.45M",
         area: "2,000 sq. ft.",
         detail: "Freehold · Partially fitted",
-        href: "https://www.iproperty.com.my/property/puchong/rare-unit-limited-beside-ioi-rio-development-freehold-mainroad-frontage-premium-location/sale-501545935/",
+        slug: "freehold-1-5-storey-shop-bandar-puteri-puchong",
+        highlights: ["Beside IOI Rio development", "Main-road frontage", "Freehold", "Limited units"],
+        sourceUrl: "https://www.iproperty.com.my/property/puchong/rare-unit-limited-beside-ioi-rio-development-freehold-mainroad-frontage-premium-location/sale-501545935/",
       },
     ],
   },
@@ -54,7 +59,9 @@ export const propertyGroups: PropertyGroup[] = [
         price: "RM 3.8M",
         area: "6,000 sq. ft.",
         detail: "Partially fitted",
-        href: "https://www.iproperty.com.my/property/puchong/rare-tpp-semi-detached-factory-taman-perindustrian-puchong-mainroad-frontage-prime-location-puchong/sale-501328659/",
+        slug: "semi-d-factory-taman-perindustrian-puchong",
+        highlights: ["Semi-detached factory in Taman Perindustrian Puchong (TPP)", "Main-road frontage", "Prime Puchong location"],
+        sourceUrl: "https://www.iproperty.com.my/property/puchong/rare-tpp-semi-detached-factory-taman-perindustrian-puchong-mainroad-frontage-prime-location-puchong/sale-501328659/",
       },
       {
         id: "04",
@@ -67,7 +74,9 @@ export const propertyGroups: PropertyGroup[] = [
         price: "RM 1.8M",
         area: "3,000 sq. ft.",
         detail: "Partially fitted",
-        href: "https://www.iproperty.com.my/property/bandar-kinrara/beside-pavilion-bandar-kinrara-25-x-80-endlot-terrace-factory-prime-location-mainroad-frontage-taman-perindustrian-kinrara-bandar-kinrara/sale-501544777/",
+        slug: "end-lot-terrace-factory-taman-perindustrian-kinrara",
+        highlights: ["Beside Pavilion Bandar Kinrara", "25 x 80 end-lot terrace factory", "Main-road frontage", "Prime location"],
+        sourceUrl: "https://www.iproperty.com.my/property/bandar-kinrara/beside-pavilion-bandar-kinrara-25-x-80-endlot-terrace-factory-prime-location-mainroad-frontage-taman-perindustrian-kinrara-bandar-kinrara/sale-501544777/",
       },
     ],
   },
@@ -86,7 +95,9 @@ export const propertyGroups: PropertyGroup[] = [
         price: "RM 1.95M",
         area: "3,201 sq. ft.",
         detail: "4 beds · 4 baths",
-        href: "https://www.iproperty.com.my/property/cyberjaya/sejati-lakeside-cyberjaya/sale-501781283/",
+        slug: "lake-facing-semi-d-sejati-lakeside-cyberjaya",
+        highlights: ["Lake-facing semi-detached home", "Sejati Lakeside, Cyberjaya"],
+        sourceUrl: "https://www.iproperty.com.my/property/cyberjaya/sejati-lakeside-cyberjaya/sale-501781283/",
       },
       {
         id: "06",
@@ -99,7 +110,9 @@ export const propertyGroups: PropertyGroup[] = [
         price: "RM 500K",
         area: "1,647 sq. ft.",
         detail: "3+1 beds · 4 baths",
-        href: "https://www.iproperty.com.my/property/cyberjaya/serin-residency/sale-106573771/",
+        slug: "condominium-serin-residency-cyberjaya",
+        highlights: ["Serin Residency, Cyberjaya", "3+1 bedrooms, 4 bathrooms"],
+        sourceUrl: "https://www.iproperty.com.my/property/cyberjaya/serin-residency/sale-106573771/",
       },
     ],
   },

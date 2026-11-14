@@ -1,5 +1,6 @@
 import { getAllInsights } from "../lib/insights";
 import { allListings } from "../lib/listings";
+import { listingPath } from "../lib/listing-path";
 import { getAllNews } from "../lib/news";
 import { AGENT, CORE_FAQS, SITE_DESCRIPTION, SITE_URL } from "../lib/site";
 
@@ -25,8 +26,8 @@ export function GET() {
     "",
     "## FAQ",
     ...CORE_FAQS.flatMap((f) => [`### ${f.q}`, f.a, ""]),
-    "## Current listings (from iProperty)",
-    ...allListings.map((l) => `- ${l.title}, ${l.location} – ${l.intent}, ${l.price}, ${l.area}: ${l.href}`),
+    "## Current listings",
+    ...allListings.map((l) => `- ${l.title}, ${l.location} – ${l.intent}, ${l.price}, ${l.area}: ${SITE_URL}${listingPath(l)}`),
     `- All listings: ${SITE_URL}/properties`,
     "",
     "## Insights (Q&A articles)",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, type KeyboardEvent } from "react";
+import { listingPath } from "./lib/listing-path";
 
 export type PropertyCategory = "Commercial" | "Industrial" | "Residential";
 
@@ -15,7 +16,9 @@ export type PropertyListing = {
   price: string;
   area: string;
   detail: string;
-  href: string;
+  slug: string; // page on this site: /properties/<slug>
+  highlights: string[]; // taken from Jared's own listing headline
+  sourceUrl: string; // internal reference only (original portal listing); never shown to visitors
 };
 
 export type PropertyGroup = {
@@ -27,10 +30,10 @@ export type PropertyGroup = {
 function PropertyCard({ listing }: { listing: PropertyListing }) {
   return (
     <article className={`property-card property-card--${Number(listing.id)} property-slide`}>
-      <a href={listing.href} target="_blank" rel="noreferrer" aria-label={`View ${listing.title} in ${listing.location} on iProperty`}>
+      <a href={listingPath(listing)} aria-label={`View ${listing.title} in ${listing.location}`}>
         <figure className="property-card-media">
           <img src={listing.image} alt={listing.imageAlt} loading="lazy" decoding="async" />
-          <figcaption>{listing.intent} · iProperty</figcaption>
+          <figcaption>{listing.intent}</figcaption>
         </figure>
         <div className="property-card-copy">
           <div className="property-card-meta">
@@ -44,7 +47,7 @@ function PropertyCard({ listing }: { listing: PropertyListing }) {
             <div><dt>Built-up</dt><dd>{listing.area}</dd></div>
             <div><dt>Details</dt><dd>{listing.detail}</dd></div>
           </dl>
-          <span className="property-card-link">View listing <b aria-hidden="true">↗</b></span>
+          <span className="property-card-link">View details <b aria-hidden="true">→</b></span>
         </div>
       </a>
     </article>
@@ -172,7 +175,7 @@ export default function PropertyCarousel({ groups }: { groups: PropertyGroup[] }
                 tabIndex={0}
               >
                 <div className="property-slider-track">
-                  {group.listings.map((listing) => <PropertyCard listing={listing} key={listing.href} />)}
+                  {group.listings.map((listing) => <PropertyCard listing={listing} key={listing.slug} />)}
                 </div>
               </div>
               <div className="property-slider-progress" aria-hidden="true">

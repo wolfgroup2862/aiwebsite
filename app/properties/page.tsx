@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import InsightShell from "../components/InsightShell";
 import JsonLd from "../components/JsonLd";
-import { allListings, IPROPERTY_PROFILE, LISTINGS_REVIEWED, propertyGroups } from "../lib/listings";
-import { SITE_URL } from "../lib/site";
+import Link from "next/link";
+import { listingPath } from "../lib/listing-path";
+import { allListings, propertyGroups } from "../lib/listings";
+import { AGENT, SITE_URL } from "../lib/site";
 
 const CATEGORY_ZH: Record<string, string> = { Commercial: "商业", Industrial: "工业", Residential: "住宅" };
 
@@ -22,7 +24,7 @@ const listSchema = {
   itemListElement: allListings.map((l, n) => ({
     "@type": "ListItem",
     position: n + 1,
-    url: l.href,
+    url: `${SITE_URL}${listingPath(l)}`,
     name: `${l.title} ${l.intent.toLowerCase()} – ${l.location} (${l.price}, ${l.area})`,
   })),
 };
@@ -35,8 +37,8 @@ export default function PropertiesPage() {
         <p className="kicker">All listings</p>
         <h1>Jared Wong&apos;s properties</h1>
         <p className="insight-lead">
-          {allListings.length} properties from Jared&apos;s public iProperty profile, reviewed {LISTINGS_REVIEWED}. Prices and
-          availability may change, so open the iProperty listing or WhatsApp Jared for the latest.
+          {allListings.length} selected properties listed by Jared. Tap a property for its details. Prices and availability
+          may change, so WhatsApp Jared for the latest.
         </p>
         <nav className="listings-filter" aria-label="Property type">
           {propertyGroups.map((g) => (
@@ -54,7 +56,7 @@ export default function PropertiesPage() {
             <ol className="shelf-row">
               {g.listings.map((l, n) => (
                 <li key={l.id} className={n === 0 ? "shelf-card is-first" : "shelf-card"}>
-                  <a href={l.href} target="_blank" rel="noreferrer">
+                  <Link href={listingPath(l)}>
                     <div className="shelf-card-top">
                       <span className="shelf-num">{String(n + 1).padStart(2, "0")}</span>
                       <span className="shelf-label">
@@ -69,20 +71,20 @@ export default function PropertiesPage() {
                       <p className="shelf-price">{l.price}</p>
                       <p className="shelf-meta">{l.area} · {l.detail}</p>
                     </div>
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li className="shelf-card shelf-card--more">
-                <a href={IPROPERTY_PROFILE} target="_blank" rel="noreferrer">
+                <a href={`${AGENT.whatsapp}?text=${encodeURIComponent(`Hi Jared, do you have more ${g.category.toLowerCase()} properties available?`)}`} target="_blank" rel="noreferrer">
                   <span>More {g.category.toLowerCase()} listings</span>
-                  <strong>View on iProperty ↗</strong>
+                  <strong>Ask Jared on WhatsApp ↗</strong>
                 </a>
               </li>
             </ol>
           </section>
         ))}
         <p className="listings-more">
-          <a href={IPROPERTY_PROFILE} target="_blank" rel="noreferrer">See Jared&apos;s full iProperty profile ↗</a>
+          Looking for something not listed here? <a href={AGENT.whatsapp} target="_blank" rel="noreferrer">WhatsApp Jared at {AGENT.phoneDisplay} ↗</a>
         </p>
       </section>
     </InsightShell>

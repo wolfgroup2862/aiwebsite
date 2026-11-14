@@ -70,12 +70,12 @@ function PropertyPortfolio() {
 
       <PropertyCarousel groups={propertyGroups} />
 
-      <a className="portfolio-cta" href="https://www.iproperty.com.my/property-agent/jared-wong-623987/" target="_blank" rel="noreferrer">
-        <span>Explore Jared&apos;s current public portfolio</span>
+      <Link className="portfolio-cta" href="/properties">
+        <span>Explore Jared&apos;s current portfolio</span>
         <strong>View all listings</strong>
-        <i aria-hidden="true">↗</i>
-      </a>
-      <p className="portfolio-note">Selected from Jared Wong&apos;s public iProperty portfolio · Reviewed 15 August 2026 · Prices, specifications and availability may change—view iProperty for current details.</p>
+        <i aria-hidden="true">→</i>
+      </Link>
+      <p className="portfolio-note">Selected from Jared Wong&apos;s current listings · Prices, specifications and availability may change—WhatsApp Jared for the latest details.</p>
     </section>
   );
 }
