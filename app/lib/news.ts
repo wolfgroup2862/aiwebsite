@@ -1,8 +1,8 @@
 // Malaysia commercial, industrial & land property news, updated daily.
 // Each item stays on the page for 7 days (KEEP_DAYS), then drops off.
 // The daily update also deletes expired items from this list.
-// Sources: The Star, EdgeProp, iProperty, PropertyGuru and similar. Summaries are written in our own words from the linked
-// source; open the source for the full story. Cover images are our own
+// Sources: The Star, EdgeProp, iProperty, PropertyGuru and similar.
+// Summaries are written in our own words from the linked source; open the source for the full story. Cover images are our own
 // graphics (category + headline figure), not the publisher's photos.
 
 export type NewsCategory = "Industrial" | "Commercial" | "Land" | "Market";
