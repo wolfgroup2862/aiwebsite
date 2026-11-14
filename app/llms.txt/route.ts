@@ -32,7 +32,7 @@ export function GET() {
     "## Insights (Q&A articles)",
     ...insights.map((i) => `- [${i.title}](${SITE_URL}/insights/${i.slug}): ${i.answer}`),
     "",
-    "## Latest Malaysia commercial & industrial property news",
+    "## Latest Malaysia commercial, industrial & land property news (last 7 days)",
     ...getAllNews().slice(0, 10).map((n) => `- ${n.date} – ${n.title} (source: ${n.source}, ${n.sourceUrl})`),
     `- All news: ${SITE_URL}/news`,
     "",

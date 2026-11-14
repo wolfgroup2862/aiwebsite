@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import InsightShell from "../components/InsightShell";
 import JsonLd from "../components/JsonLd";
 import NewsCover from "../components/NewsCover";
-import { getAllNews, NEWS_UPDATED } from "../lib/news";
+import { getAllNews, KEEP_DAYS, NEWS_UPDATED } from "../lib/news";
 import { AGENT, SITE_URL } from "../lib/site";
 
 export const metadata: Metadata = {
-  title: "Malaysia Commercial & Industrial Property News – Updated Daily",
+  title: "Malaysia Commercial, Industrial & Land Property News – Updated Daily",
   description:
-    "Daily round-up of Malaysia commercial and industrial property news: factories, warehouses, industrial land, offices and shop lots. Curated by Jared Wong (REN 07483), Puchong.",
+    "Daily round-up of Malaysia commercial, industrial and land property news: factories, warehouses, industrial land, development land, offices and shop lots. Curated by Jared Wong (REN 07483), Puchong.",
   alternates: { canonical: "/news" },
 };
 
@@ -17,7 +17,7 @@ export default function NewsPage() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Malaysia commercial & industrial property news",
+    name: "Malaysia commercial, industrial & land property news",
     url: `${SITE_URL}/news`,
     numberOfItems: items.length,
     itemListElement: items.map((n, i) => ({
@@ -40,12 +40,14 @@ export default function NewsPage() {
       <JsonLd data={schema} />
       <section className="news-wrap">
         <p className="kicker">News</p>
-        <h1>Malaysia commercial &amp; industrial property news</h1>
+        <h1>Malaysia commercial, industrial &amp; land property news</h1>
         <p className="insight-lead">
-          A short daily round-up of what&apos;s happening with factories, warehouses, industrial land, offices and shop
-          lots in Malaysia. Each item is summarised in our own words with a link to the original report. Last updated{" "}
-          <time dateTime={NEWS_UPDATED}>{NEWS_UPDATED}</time>.
+          A short daily round-up of what&apos;s happening with factories, warehouses, industrial and development land, offices and shop
+          lots in Malaysia, from The Star, EdgeProp, iProperty, PropertyGuru and other property news sites. Each item is
+          summarised in our own words with a link to the original report and stays here for {KEEP_DAYS} days. Last
+          updated <time dateTime={NEWS_UPDATED}>{NEWS_UPDATED}</time>.
         </p>
+        {items.length === 0 ? <p className="news-note">No new items this week yet. Check back tomorrow.</p> : null}
         <ul className="news-list">
           {items.map((n) => (
             <li key={n.slug} id={n.slug}>

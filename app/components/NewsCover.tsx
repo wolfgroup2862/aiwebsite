@@ -5,6 +5,7 @@ import type { NewsItem } from "../lib/news";
 const PALETTE: Record<NewsItem["category"], { bg: string; accent: string }> = {
   Industrial: { bg: "#1f2a2e", accent: "#d39a4a" },
   Commercial: { bg: "#23202b", accent: "#c9a36a" },
+  Land: { bg: "#26241c", accent: "#c7b26a" },
   Market: { bg: "#1d2420", accent: "#9fbf7a" },
 };
 

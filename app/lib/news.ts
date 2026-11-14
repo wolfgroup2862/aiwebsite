@@ -1,9 +1,11 @@
-// Malaysia commercial & industrial property news, updated daily.
-// Newest first. Summaries are written in our own words from the linked
+// Malaysia commercial, industrial & land property news, updated daily.
+// Each item stays on the page for 7 days (KEEP_DAYS), then drops off.
+// The daily update also deletes expired items from this list.
+// Sources: The Star, EdgeProp, iProperty, PropertyGuru and similar. Summaries are written in our own words from the linked
 // source; open the source for the full story. Cover images are our own
 // graphics (category + headline figure), not the publisher's photos.
 
-export type NewsCategory = "Industrial" | "Commercial" | "Market";
+export type NewsCategory = "Industrial" | "Commercial" | "Land" | "Market";
 
 export type NewsItem = {
   slug: string;
@@ -20,7 +22,22 @@ export type NewsItem = {
 
 export const NEWS_UPDATED = "2026-11-14";
 
+export const KEEP_DAYS = 7;
+
 export const news: NewsItem[] = [
+  {
+    slug: "bcb-batu-pahat-land-rm110m",
+    date: "2026-11-13",
+    category: "Land",
+    title: "BCB buys Batu Pahat land for RM110.9 million, eyes RM1.1 billion GDV",
+    figure: "RM110.9M",
+    figureLabel: "Johor land, ~644,000 sq m",
+    summary:
+      "BCB Bhd, through two subsidiaries, is buying four freehold parcels totalling about 644,000 sq m in Batu Pahat, Johor, from Indah Corporation for RM110.9 million. The group puts the preliminary gross development value at RM1.1 billion; the type of development has not been announced.",
+    source: "The Star",
+    sourceUrl:
+      "https://www.thestar.com.my/business/business-news/2026/11/13/bcb-acquires-johor-land-for-rm1109mil-eyes-rm11bil-gdv",
+  },
   {
     slug: "3q2026-property-transactions-commercial-up",
     date: "2026-11-13",
@@ -64,6 +81,18 @@ export const news: NewsItem[] = [
   },
 ];
 
-export function getAllNews(): NewsItem[] {
-  return [...news].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+// Today's date in Malaysia (UTC+8), as YYYY-MM-DD.
+function todayMY(): string {
+  return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+}
+
+function daysBetween(from: string, to: string): number {
+  return Math.round((Date.parse(to) - Date.parse(from)) / 86400000);
+}
+
+// Only items from the last KEEP_DAYS days (today counts as day 1), newest first.
+export function getAllNews(today: string = todayMY()): NewsItem[] {
+  return news
+    .filter((n) => daysBetween(n.date, today) < KEEP_DAYS)
+    .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
 }
