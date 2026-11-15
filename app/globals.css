@@ -453,7 +453,7 @@ img { display: block; max-width: 100%; }
 
 .award-posters {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(1rem, 2.2vw, 2.5rem);
   margin: 0;
   padding: 0;

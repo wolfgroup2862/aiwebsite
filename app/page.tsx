@@ -181,9 +181,10 @@ export default function Home() {
           <header className="recognition-heading">
             <SectionLabel number="02">Recognition</SectionLabel>
             <h2 id="recognition-title">Consistency,<br /><em>recognised.</em></h2>
-            <p>TRR Multi Million Agent recognition across 2023, 2024 and 2025.</p>
+            <p>TRR Multi Million Agent (MMA) First Class, and MMA recognition across 2023, 2024 and 2025.</p>
           </header>
           <ul className="award-posters" aria-label="Jared Wong's TRR Multi Million Agent posters" tabIndex={0}>
+            <li className="award-poster-card"><img src="/jared-mma-first-class.jpg" alt="Jared Wong's MMA First Class poster from The Roof Realty and Wolf Group, recognising over a million in sales a year." width="1024" height="1280" loading="lazy" decoding="async" /><span>MMA First Class</span></li>
             <li className="award-poster-card"><img src="/jared-mma-2023.jpg" alt="Jared Wong's 2023 MMA achiever poster for The Roof Realty Puchong." width="1023" height="1280" loading="lazy" decoding="async" /><span>2023</span></li>
             <li className="award-poster-card"><img src="/jared-mma-2024.jpg" alt="Jared Wong's 2024 MMA achiever poster for The Roof Realty Puchong." width="1680" height="2000" loading="lazy" decoding="async" /><span>2024</span></li>
             <li className="award-poster-card"><img src="/jared-mma-2025.jpg" alt="Jared Wong's 2025 MMA achiever poster for The Roof Realty Puchong." width="905" height="1280" loading="lazy" decoding="async" /><span>2025</span></li>
