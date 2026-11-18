@@ -54,7 +54,17 @@ export default function AgentPage({ profile, listings, notes }: { profile: Profi
         </nav>
       </header>
 
-      <NightHero name={profile.firstName} realImage={profile.realImage} heroImage={profile.heroImage} subtitle={profile.areas.join(" · ")} />
+      <NightHero
+        name={profile.firstName}
+        realImage={profile.realImage}
+        heroImage={profile.heroImage}
+        subtitle={profile.areas.join(" · ")}
+        cards={[
+          { title: "About", body: profile.intro },
+          { title: "Areas", body: profile.areas.join(" · ") },
+          { title: "Specialties", body: profile.specialties.join(" · ") },
+        ]}
+      />
 
       <section id="about" className={s.intro}>
         <div className={s.introCard}>
