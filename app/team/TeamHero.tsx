@@ -11,6 +11,9 @@ export type HeroMember = {
   bubble: { left: number; top: number; mobile?: { left: number; top: number } }; // % of the person's box
 };
 
+// time (s) in team-hero.mp4 of the frame used for the cut-outs
+const CUTOUT_FRAME_TIME = 4.2;
+
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
 const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
@@ -64,11 +67,11 @@ export default function TeamHero({
     clone.className = s.flyer;
     document.body.appendChild(clone);
 
-    // freeze the clip on its first frame, which is the frame the cut-outs came from
+    // freeze the clip on the frame the cut-outs were taken from (both smiling, waving)
     const vid = stageRef.current?.querySelector("video");
     if (vid) {
       vid.pause();
-      vid.currentTime = 0;
+      vid.currentTime = CUTOUT_FRAME_TIME;
     }
     stageRef.current?.classList.add(s.dim);
     person.classList.add(s.lifted);

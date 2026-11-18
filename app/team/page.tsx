@@ -29,15 +29,15 @@ const TEAM: Member[] = [
     id: "mandy",
     profile: MANDY,
     cutout: "/agent/mandy-team.webp",
-    box: { left: 19.22, top: 12.91, width: 33.66, height: 69.7 },
-    bubble: { left: -26, top: 12, mobile: { left: 22, top: -11 } },
+    box: { left: 23.86, top: 11.68, width: 28.8, height: 46.88 },
+    bubble: { left: -40, top: 18, mobile: { left: 10, top: -16 } },
   },
   {
     id: "wilson",
     profile: WILSON,
     cutout: "/agent/wilson-team.webp",
-    box: { left: 52.89, top: 8.42, width: 34.95, height: 74.46 },
-    bubble: { left: 72, top: 6, mobile: { left: 22, top: -6 } },
+    box: { left: 52.66, top: 6.52, width: 38.83, height: 52.04 },
+    bubble: { left: 70, top: 4, mobile: { left: 18, top: -8 } },
   },
 ];
 
