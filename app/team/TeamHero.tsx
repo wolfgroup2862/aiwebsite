@@ -48,23 +48,30 @@ export default function TeamHero({
 
     const sy0 = window.scrollY;
     const a = person.getBoundingClientRect();
-    const t0 = landing.getBoundingClientRect();
+    // land exactly where the formal photo sits inside the portrait frame
+    const formal = landing.querySelector<HTMLImageElement>("img");
+    const t0 = (formal ?? landing).getBoundingClientRect();
     const from = { x: a.left, y: a.top + sy0, w: a.width, h: a.height };
-    const ratio = a.width / a.height;
-    let h = t0.height * 0.94;
-    let w = h * ratio;
-    if (w > t0.width * 0.98) {
-      w = t0.width * 0.98;
-      h = w / ratio;
-    }
-    const to = { x: t0.left + (t0.width - w) / 2, y: t0.top + sy0 + t0.height - h, w, h };
+    const to = { x: t0.left, y: t0.top + sy0, w: t0.width, h: t0.height };
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     const endScroll = Math.min(maxScroll, section.getBoundingClientRect().top + sy0 - 70);
 
-    const clone = document.createElement("img");
-    clone.src = person.currentSrc || person.src;
-    clone.alt = "";
+    // flying clone: the cut-out from the video, which turns into the formal
+    // photo half-way through the jump (so it lands already as the formal photo)
+    const clone = document.createElement("div");
     clone.className = s.flyer;
+    const imgA = document.createElement("img");
+    imgA.src = person.currentSrc || person.src;
+    imgA.alt = "";
+    clone.appendChild(imgA);
+    let imgB: HTMLImageElement | null = null;
+    if (formal) {
+      imgB = document.createElement("img");
+      imgB.src = formal.currentSrc || formal.src;
+      imgB.alt = "";
+      imgB.style.opacity = "0";
+      clone.appendChild(imgB);
+    }
     document.body.appendChild(clone);
 
     // freeze the clip on the frame the cut-outs were taken from (both smiling, waving)
@@ -78,40 +85,45 @@ export default function TeamHero({
     section.classList.remove(s.arrived);
     section.classList.add(s.waiting);
 
-    const D = 1700;
+    const D = 1600;
     let start = -1;
     const step = (now: number) => {
       if (start < 0) start = now;
       const t = clamp((now - start) / D);
-      const lift = clamp(t / 0.2); // step out towards the viewer
-      const travel = ease(clamp((t - 0.2) / 0.68)); // jump down the page
-      const land = clamp((t - 0.88) / 0.12); // squash on landing
+      const lift = clamp(t / 0.18); // step out towards the viewer
+      const travel = ease(clamp((t - 0.18) / 0.72)); // jump down the page
+      const land = clamp((t - 0.9) / 0.1); // small squash on landing
+      const morph = clamp((travel - 0.3) / 0.4); // cut-out → formal photo, mid-air
 
       window.scrollTo({ top: sy0 + (endScroll - sy0) * travel, behavior: "instant" as ScrollBehavior });
 
       const x = from.x + (to.x - from.x) * travel;
-      const y = from.y + (to.y - from.y) * travel - Math.sin(Math.PI * travel) * 180 - lift * (1 - travel) * 24;
+      const y = from.y + (to.y - from.y) * travel - Math.sin(Math.PI * travel) * 160 - lift * (1 - travel) * 24;
       const cw = from.w + (to.w - from.w) * travel;
       const ch = from.h + (to.h - from.h) * travel;
       const pop = 1 + 0.1 * lift * (1 - travel);
-      const squash = 1 - 0.09 * Math.sin(Math.PI * land);
-      const rot = Math.sin(Math.PI * travel) * -7;
+      const squash = 1 - 0.06 * Math.sin(Math.PI * land);
+      const rot = Math.sin(Math.PI * travel) * -6;
 
       clone.style.width = `${cw}px`;
       clone.style.height = `${ch}px`;
       clone.style.transform = `translate(${x}px, ${y - window.scrollY}px) rotate(${rot}deg) scale(${pop * (2 - squash)}, ${pop * squash})`;
+      if (imgB) {
+        imgA.style.opacity = String(1 - morph);
+        imgB.style.opacity = String(morph);
+      }
 
       if (t < 1) {
         requestAnimationFrame(step);
         return;
       }
+      // the clone now sits exactly on the formal photo: swap invisibly
       section.classList.remove(s.waiting);
       section.classList.add(s.arrived);
+      requestAnimationFrame(() => clone.remove());
       stageRef.current?.classList.remove(s.dim);
       vid?.play().catch(() => {});
       person.classList.remove(s.lifted);
-      clone.classList.add(s.flyerOut);
-      window.setTimeout(() => clone.remove(), 500);
       history.replaceState(null, "", `#${id}`);
       busy.current = false;
     };

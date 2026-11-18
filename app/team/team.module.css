@@ -148,14 +148,20 @@
   z-index: 80;
   pointer-events: none;
   transform-origin: 50% 100%;
-  filter: drop-shadow(0 24px 30px rgba(40, 20, 0, 0.45));
+  filter: drop-shadow(0 24px 30px rgba(40, 20, 0, 0.35));
   will-change: transform, width, height;
 }
-.flyerOut { opacity: 0; transition: opacity 0.45s; }
+.flyer img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 100%;
+}
 
 .waiting .portrait img,
 .waiting .memberText { opacity: 0; }
-.arrived .portrait img { animation: fadeIn 0.45s both; }
 .arrived .memberText { animation: slideIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
 .arrived .name span { animation: blinkDot 1.2s 0.5s 2; }
 
