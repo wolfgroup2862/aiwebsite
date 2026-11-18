@@ -95,6 +95,10 @@
   transform: scale(1.03) translateY(-1%);
 }
 .person:focus-visible { outline: none; }
+/* with a waving video, the static cut-outs stay invisible until hovered */
+.hasVideo .person > img { opacity: 0; transition: opacity 0.3s, filter 0.3s, transform 0.35s; }
+.hasVideo .person:hover > img { opacity: 1; }
+.hasVideo .person { animation: none; }
 .lifted { opacity: 0.35; filter: grayscale(0.6) blur(1px); }
 .dim .photo { filter: brightness(0.55) blur(2px); }
 .photo { transition: filter 0.4s; }

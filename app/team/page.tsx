@@ -70,6 +70,7 @@ export default function TeamPage() {
       <section id="top" className={s.hero}>
         <TeamHero
           photo="/agent/team-hero.webp"
+          // video="/agent/team-hero.mp4" // ← add once the AI waving clip is ready (same framing as the photo)
           members={TEAM.map((m) => ({ id: m.id, name: m.profile.firstName, cutout: m.cutout, box: m.box, bubble: m.bubble }))}
         />
 

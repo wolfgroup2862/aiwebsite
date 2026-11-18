@@ -16,7 +16,7 @@ const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 
 
 // Click a person → they step out of the photo, jump down the page and land
 // in their own intro section's portrait frame.
-export default function TeamHero({ photo, members }: { photo: string; members: HeroMember[] }) {
+export default function TeamHero({ photo, video, members }: { photo: string; video?: string; members: HeroMember[] }) {
   const stageRef = useRef<HTMLDivElement>(null);
   const busy = useRef(false);
 
@@ -99,8 +99,13 @@ export default function TeamHero({ photo, members }: { photo: string; members: H
   };
 
   return (
-    <div ref={stageRef} className={s.stage}>
-      <img className={s.photo} src={photo} alt="Mandy and Wilson working together at a desk" width={1672} height={859} />
+    <div ref={stageRef} className={`${s.stage} ${video ? s.hasVideo : ""}`}>
+      {video ? (
+        // AI-generated clip of the same shot where they wave; the photo is its poster
+        <video className={s.photo} src={video} poster={photo} autoPlay muted loop playsInline aria-label="Mandy and Wilson waving hello" />
+      ) : (
+        <img className={s.photo} src={photo} alt="Mandy and Wilson working together at a desk" width={1672} height={859} />
+      )}
       <div className={s.shade} aria-hidden="true" />
 
       {members.map((m, i) => (
