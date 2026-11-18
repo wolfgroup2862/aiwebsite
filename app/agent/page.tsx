@@ -5,7 +5,7 @@ import { LISTINGS, NOTES, PROFILE } from "./profile";
 // Placeholder data is still in profile.ts, so keep this page out of search
 // engines until the real details are confirmed.
 export const metadata: Metadata = {
-  title: { absolute: `${PROFILE.fullName} (${PROFILE.ren}) | ${PROFILE.agency}` },
+  title: { absolute: `${PROFILE.fullName} | Puchong, Bukit Jalil & PJ Property | ${PROFILE.agency}` },
   description: PROFILE.tagline,
   robots: { index: false, follow: false },
   alternates: { canonical: "/agent" },
@@ -41,15 +41,15 @@ export default function AgentPage() {
 
         <div className={s.heroBody}>
           <figure className={s.portrait}>
-            <img src={PROFILE.photo} alt={`${PROFILE.fullName}, ${PROFILE.jobTitle}`} width={1000} height={1500} />
+            <img src={PROFILE.photo} alt={`${PROFILE.fullName}, ${PROFILE.agency}`} width={1000} height={1500} />
             <figcaption className={s.badge}>
-              <strong>{PROFILE.ren}</strong>
+              <strong>{PROFILE.fullName}</strong>
               <span>{PROFILE.agency}</span>
             </figcaption>
           </figure>
 
           <div className={s.heroText}>
-            <p className={s.kicker}>{PROFILE.jobTitle}</p>
+            <p className={s.kicker}>{PROFILE.areas.join(" · ")}</p>
             <p className={s.tagline}>{PROFILE.tagline}</p>
             <ul className={s.chips}>
               {PROFILE.specialties.map((x) => (
@@ -95,7 +95,7 @@ export default function AgentPage() {
         <div className={s.sectionHead}>
           <p className={s.label}>Selected listings</p>
           <h2>
-            Homes I&rsquo;m showing
+            Properties I&rsquo;m showing
             <br />
             <span>with heart &amp; homework.</span>
           </h2>
@@ -143,11 +143,11 @@ export default function AgentPage() {
 
       <section id="contact" className={s.cta}>
         <h2>
-          Let&rsquo;s talk <span>homes.</span>
+          Let&rsquo;s talk <span>property.</span>
         </h2>
         <p>
           {PROFILE.fullName}
-          {PROFILE.chineseName && ` · ${PROFILE.chineseName}`} · {PROFILE.ren} · {PROFILE.agency}
+          {PROFILE.chineseName && ` · ${PROFILE.chineseName}`} · {PROFILE.agency}
         </p>
         {wa ? (
           <a className={s.btnDark} href={wa} target="_blank" rel="noopener noreferrer">

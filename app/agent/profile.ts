@@ -4,17 +4,15 @@
 // plus public/agent/.
 
 export const PROFILE = {
-  firstName: "Your Name", // TODO: e.g. "Mira"
-  fullName: "Your Full Name", // TODO
+  firstName: "Mandy",
+  fullName: "Mandy",
   chineseName: "", // TODO: optional, e.g. "陈美玲"
-  ren: "REN 00000", // TODO
-  jobTitle: "Real Estate Negotiator", // TODO: confirm
   agency: "The Roof Realty (TRR) · Wolf Group",
-  tagline: "I help families and investors find homes they'll love — with honest advice, clear numbers and zero pressure.", // TODO: confirm wording
+  tagline: "Commercial and property advice across Puchong, Bukit Jalil and PJ — honest numbers, clear answers and zero pressure.", // TODO: confirm wording
   intro:
     "Tell visitors in two or three sentences who you are, which areas you know best, and why people enjoy working with you.", // TODO
-  areas: ["Area 1", "Area 2", "Area 3", "Area 4"], // TODO
-  specialties: ["Residential sale", "Residential rental", "New launches"], // TODO
+  areas: ["Puchong", "Bukit Jalil", "Petaling Jaya"],
+  specialties: ["Puchong commercial", "Bukit Jalil", "Petaling Jaya (PJ)"],
   whatsapp: "", // TODO: digits only, e.g. "60123456789". Empty = button hidden.
   photo: "/agent/profile.jpg",
 };
