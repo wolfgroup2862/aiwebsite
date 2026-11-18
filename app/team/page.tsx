@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PROFILE as MANDY } from "../mandy/profile";
 import { PROFILE as WILSON } from "../wilson/profile";
 import type { Profile } from "../_agent/AgentPage";
+import TeamHero, { type HeroMember } from "./TeamHero";
 import s from "./team.module.css";
 
 // Team landing page (warm studio style). Click a person in the hero photo →
@@ -18,13 +19,26 @@ export const metadata: Metadata = {
 type Member = {
   id: string;
   profile: Profile;
-  // hotspot over the person in the hero photo, in % of the photo
-  spot: { left: number; top: number; width: number; height: number; labelTop: number };
+  cutout: string; // this person cut out of the team photo (they "jump" out on click)
+  box: HeroMember["box"]; // where that cutout sits on the photo, in %
+  bubble: HeroMember["bubble"]; // speech-bubble position, in % of the box
 };
 
 const TEAM: Member[] = [
-  { id: "mandy", profile: MANDY, spot: { left: 26, top: 20, width: 31, height: 80, labelTop: 12 } },
-  { id: "wilson", profile: WILSON, spot: { left: 57.5, top: 15, width: 30, height: 80, labelTop: 6 } },
+  {
+    id: "mandy",
+    profile: MANDY,
+    cutout: "/agent/mandy-team.webp",
+    box: { left: 24.88, top: 15.48, width: 32.54, height: 68.92 },
+    bubble: { left: 22, top: -11 },
+  },
+  {
+    id: "wilson",
+    profile: WILSON,
+    cutout: "/agent/wilson-team.webp",
+    box: { left: 57.42, top: 9.55, width: 31.76, height: 72.99 },
+    bubble: { left: 60, top: 30, mobile: { left: 22, top: -6 } },
+  },
 ];
 
 function waLink(p: Profile) {
@@ -54,25 +68,10 @@ export default function TeamPage() {
       </header>
 
       <section id="top" className={s.hero}>
-        <div className={s.stage}>
-          <img className={s.photo} src="/agent/team-hero.webp" alt="Mandy and Wilson working together at a desk" width={1672} height={859} />
-          <div className={s.shade} aria-hidden="true" />
-
-          {TEAM.map((m) => (
-            <a
-              key={m.id}
-              href={`#${m.id}`}
-              className={s.spot}
-              style={{ left: `${m.spot.left}%`, top: `${m.spot.top}%`, width: `${m.spot.width}%`, height: `${m.spot.height}%` }}
-              aria-label={`Meet ${m.profile.firstName}`}
-            >
-              <span className={s.spotLabel} style={{ top: `${m.spot.labelTop}%` }}>
-                <i aria-hidden="true" />
-                Meet {m.profile.firstName} <b aria-hidden="true">↓</b>
-              </span>
-            </a>
-          ))}
-        </div>
+        <TeamHero
+          photo="/agent/team-hero.webp"
+          members={TEAM.map((m) => ({ id: m.id, name: m.profile.firstName, cutout: m.cutout, box: m.box, bubble: m.bubble }))}
+        />
 
         <div className={s.heroText}>
           <h1 className={s.hello}>Hello,</h1>
@@ -93,7 +92,7 @@ export default function TeamPage() {
         const wa = waLink(p);
         return (
           <section key={m.id} id={m.id} className={`${s.member} ${i % 2 ? s.flip : ""}`}>
-            <figure className={s.portrait}>
+            <figure className={s.portrait} data-landing>
               <img src={p.realImage} alt={`${p.fullName}`} loading="lazy" />
             </figure>
             <div className={s.memberText}>
