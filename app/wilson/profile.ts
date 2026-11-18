@@ -13,7 +13,8 @@ export const PROFILE: Profile = {
   specialties: ["Specialty 1", "Specialty 2"], // TODO
   whatsapp: "", // TODO
   photo: "/agent/wilson.jpg",
-  character: "wilson",
+  realImage: "/agent/wilson-real.webp",
+  heroImage: "/agent/wilson-hero.webp",
 };
 
 // TODO: replace with his real listings.

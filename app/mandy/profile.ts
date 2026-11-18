@@ -13,7 +13,8 @@ export const PROFILE: Profile = {
   specialties: ["Puchong commercial", "Bukit Jalil", "Petaling Jaya (PJ)"],
   whatsapp: "", // TODO: digits only, e.g. "60123456789". Empty = button hidden.
   photo: "/agent/mandy.jpg",
-  character: "mandy",
+  realImage: "/agent/mandy-real.webp",
+  // heroImage: "/agent/mandy-hero.webp", // TODO: add once her hero-character image is ready
 };
 
 // TODO: replace with her real listings (photo in public/agent/, title, area, price).

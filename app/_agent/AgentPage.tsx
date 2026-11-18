@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import type { CharacterKind } from "./Character";
 import NightHero from "./NightHero";
 import s from "./agent.module.css";
 
@@ -19,7 +18,8 @@ export type Profile = {
   specialties: string[];
   whatsapp: string; // digits only, e.g. "60123456789". Empty = button hidden.
   photo: string;
-  character: CharacterKind; // which cartoon to draw in the hero (tap → robot)
+  realImage: string; // background-removed photo (PNG/WebP) shown first in the hero
+  heroImage?: string; // background-removed "hero character" version revealed on tap
 };
 export type Listing = { title: string; area: string; type: string; price: string; image?: string };
 export type Note = { tag: string; tone: "lime" | "peach" | "sky" | "lilac"; title: string; body: string };
@@ -54,7 +54,7 @@ export default function AgentPage({ profile, listings, notes }: { profile: Profi
         </nav>
       </header>
 
-      <NightHero name={profile.firstName} kind={profile.character} subtitle={profile.areas.join(" · ")} />
+      <NightHero name={profile.firstName} realImage={profile.realImage} heroImage={profile.heroImage} subtitle={profile.areas.join(" · ")} />
 
       <section id="about" className={s.intro}>
         <div className={s.introCard}>
