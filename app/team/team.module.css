@@ -51,8 +51,8 @@
   left: 50%;
   top: 50%;
   translate: -50% -50%;
-  width: max(100%, calc(100svh * 1672 / 859));
-  aspect-ratio: 1672 / 859;
+  width: max(100%, calc(100svh * var(--ar)));
+  aspect-ratio: var(--ar);
   overflow: hidden;
 }
 .photo {
@@ -68,8 +68,9 @@
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(48, 28, 12, 0.55), rgba(48, 28, 12, 0.15) 38%, transparent 55%),
-    linear-gradient(rgba(30, 18, 8, 0.35), transparent 22%);
+    radial-gradient(ellipse 55% 60% at 0% 100%, rgba(30, 16, 6, 0.85), transparent 70%),
+    linear-gradient(transparent 55%, rgba(30, 16, 6, 0.55)),
+    linear-gradient(rgba(30, 18, 8, 0.4), transparent 18%);
 }
 
 /* people cut out of the photo, layered exactly over themselves */
@@ -97,7 +98,7 @@
 .person:focus-visible { outline: none; }
 /* with a waving video, the static cut-outs stay invisible until hovered */
 .hasVideo .person > img { opacity: 0; transition: opacity 0.3s, filter 0.3s, transform 0.35s; }
-.hasVideo .person:hover > img { opacity: 1; }
+.hasVideo .person:hover .bubble { transform: scale(1.06); }
 .hasVideo .person { animation: none; }
 .lifted { opacity: 0.35; filter: grayscale(0.6) blur(1px); }
 .dim .photo { filter: brightness(0.55) blur(2px); }
@@ -162,8 +163,8 @@
   position: absolute;
   z-index: 3;
   left: clamp(16px, 3.6vw, 60px);
-  top: 18%;
-  max-width: 34%;
+  bottom: 7%;
+  max-width: 40%;
   color: #fff;
   pointer-events: none;
 }
@@ -173,7 +174,7 @@
   font-family: var(--display);
   font-weight: 900;
   font-style: italic;
-  font-size: clamp(4rem, 12vw, 14rem);
+  font-size: clamp(4rem, 9.5vw, 11rem);
   line-height: 0.95;
   letter-spacing: -0.06em;
   color: var(--yellow);
@@ -315,13 +316,13 @@
   .navCta { margin-left: auto; padding: 8px 14px; font-size: 0.82rem; }
   .brand img { height: 24px; }
   .hero { display: flex; flex-direction: column; padding-top: 72px; background: linear-gradient(#4a2f18, #3a2615); }
-  .heroText { position: relative; order: -1; left: 0; top: 0; max-width: none; padding: 12px 16px 20px; }
+  .heroText { position: relative; order: -1; left: 0; top: 0; bottom: auto; max-width: none; padding: 12px 16px 20px; }
   .hello { font-size: 5rem; }
   .lede { font-size: 1.15rem; }
   .cta { margin-top: 1em; }
   /* keep the photo's aspect so the tap targets stay on the people */
   .hero { height: auto; }
-  .stage { position: relative; top: 0; left: 50%; translate: -56.5% 0; align-self: flex-start; flex: none; height: 52svh; width: calc(52svh * 1672 / 859); }
+  .stage { position: relative; top: 0; left: 50%; translate: -53.5% 0; align-self: flex-start; flex: none; width: 122vw; height: auto; }
   .bubble { left: var(--mbl); top: var(--mbt); padding: 6px 10px 6px 7px; gap: 5px; }
   .bubble em { display: none; }
   .shade { background: linear-gradient(rgba(58, 38, 21, 0.6), transparent 20%); }

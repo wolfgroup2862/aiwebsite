@@ -29,15 +29,15 @@ const TEAM: Member[] = [
     id: "mandy",
     profile: MANDY,
     cutout: "/agent/mandy-team.webp",
-    box: { left: 24.88, top: 15.48, width: 32.54, height: 68.92 },
-    bubble: { left: 22, top: -11 },
+    box: { left: 19.22, top: 12.91, width: 33.66, height: 69.7 },
+    bubble: { left: -26, top: 12, mobile: { left: 22, top: -11 } },
   },
   {
     id: "wilson",
     profile: WILSON,
     cutout: "/agent/wilson-team.webp",
-    box: { left: 57.42, top: 9.55, width: 31.76, height: 72.99 },
-    bubble: { left: 60, top: 30, mobile: { left: 22, top: -6 } },
+    box: { left: 52.89, top: 8.42, width: 34.95, height: 74.46 },
+    bubble: { left: 72, top: 6, mobile: { left: 22, top: -6 } },
   },
 ];
 
@@ -69,8 +69,9 @@ export default function TeamPage() {
 
       <section id="top" className={s.hero}>
         <TeamHero
-          photo="/agent/team-hero.webp"
-          // video="/agent/team-hero.mp4" // ← add once the AI waving clip is ready (same framing as the photo)
+          photo="/agent/team-hero-poster.webp"
+          video="/agent/team-hero.mp4" // AI clip of Mandy & Wilson waving (plays forward then back, so it loops smoothly)
+          aspect={1316 / 736}
           members={TEAM.map((m) => ({ id: m.id, name: m.profile.firstName, cutout: m.cutout, box: m.box, bubble: m.bubble }))}
         />
 

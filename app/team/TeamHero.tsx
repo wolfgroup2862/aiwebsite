@@ -16,7 +16,17 @@ const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 
 
 // Click a person → they step out of the photo, jump down the page and land
 // in their own intro section's portrait frame.
-export default function TeamHero({ photo, video, members }: { photo: string; video?: string; members: HeroMember[] }) {
+export default function TeamHero({
+  photo,
+  video,
+  aspect,
+  members,
+}: {
+  photo: string;
+  video?: string;
+  aspect: number; // width / height of the photo or video
+  members: HeroMember[];
+}) {
   const stageRef = useRef<HTMLDivElement>(null);
   const busy = useRef(false);
 
@@ -54,6 +64,12 @@ export default function TeamHero({ photo, video, members }: { photo: string; vid
     clone.className = s.flyer;
     document.body.appendChild(clone);
 
+    // freeze the clip on its first frame, which is the frame the cut-outs came from
+    const vid = stageRef.current?.querySelector("video");
+    if (vid) {
+      vid.pause();
+      vid.currentTime = 0;
+    }
     stageRef.current?.classList.add(s.dim);
     person.classList.add(s.lifted);
     section.classList.remove(s.arrived);
@@ -89,6 +105,7 @@ export default function TeamHero({ photo, video, members }: { photo: string; vid
       section.classList.remove(s.waiting);
       section.classList.add(s.arrived);
       stageRef.current?.classList.remove(s.dim);
+      vid?.play().catch(() => {});
       person.classList.remove(s.lifted);
       clone.classList.add(s.flyerOut);
       window.setTimeout(() => clone.remove(), 500);
@@ -99,12 +116,15 @@ export default function TeamHero({ photo, video, members }: { photo: string; vid
   };
 
   return (
-    <div ref={stageRef} className={`${s.stage} ${video ? s.hasVideo : ""}`}>
+    <div ref={stageRef} className={`${s.stage} ${video ? s.hasVideo : ""}`} style={{ "--ar": aspect } as CSSProperties}>
       {video ? (
         // AI-generated clip of the same shot where they wave; the photo is its poster
-        <video className={s.photo} src={video} poster={photo} autoPlay muted loop playsInline aria-label="Mandy and Wilson waving hello" />
+        <video className={s.photo} poster={photo} autoPlay muted loop playsInline preload="auto" aria-label="Mandy and Wilson waving hello">
+          <source src={video} type="video/mp4" />
+          <source src={video.replace(/\.mp4$/, ".webm")} type="video/webm" />
+        </video>
       ) : (
-        <img className={s.photo} src={photo} alt="Mandy and Wilson working together at a desk" width={1672} height={859} />
+        <img className={s.photo} src={photo} alt="Mandy and Wilson working together at a desk" />
       )}
       <div className={s.shade} aria-hidden="true" />
 
