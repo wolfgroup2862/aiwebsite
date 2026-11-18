@@ -13,7 +13,7 @@ export const PROFILE: Profile = {
   specialties: ["Specialty 1", "Specialty 2"], // TODO
   whatsapp: "", // TODO
   photo: "/agent/wilson.jpg",
-  stickyNote: "Let’s find your next move.",
+  character: "wilson",
 };
 
 // TODO: replace with his real listings.

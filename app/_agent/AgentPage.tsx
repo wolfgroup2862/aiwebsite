@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import type { CharacterKind } from "./Character";
+import NightHero from "./NightHero";
 import s from "./agent.module.css";
 
 // Shared one-page agent profile template (style based on the "Hello, I'm ..."
@@ -17,9 +19,7 @@ export type Profile = {
   specialties: string[];
   whatsapp: string; // digits only, e.g. "60123456789". Empty = button hidden.
   photo: string;
-  heroVideo?: string; // e.g. "/agent/wilson-hello.mp4" — waving clip; when set it replaces the photo card
-  heroPoster?: string; // first frame shown before the video loads
-  stickyNote?: string;
+  character: CharacterKind; // which cartoon to draw in the hero (tap → robot)
 };
 export type Listing = { title: string; area: string; type: string; price: string; image?: string };
 export type Note = { tag: string; tone: "lime" | "peach" | "sky" | "lilac"; title: string; body: string };
@@ -54,71 +54,32 @@ export default function AgentPage({ profile, listings, notes }: { profile: Profi
         </nav>
       </header>
 
-      <section id="top" className={s.hero}>
-        <div className={s.grid} aria-hidden="true" />
-        <h1 className={s.headline}>
-          <span className={s.hello}>
-            Hello,<span className={s.wave} aria-hidden="true">👋</span>
-          </span>
-          <span>I&rsquo;m {profile.firstName}.</span>
-        </h1>
+      <NightHero name={profile.firstName} kind={profile.character} subtitle={profile.areas.join(" · ")} />
 
-        {profile.heroVideo ? (
-          <div className={s.stage}>
-            {/* AI-generated clip of the agent at a desk, waving — like the reference site */}
-            <video
-              className={s.stageVideo}
-              src={profile.heroVideo}
-              poster={profile.heroPoster ?? profile.photo}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-label={`${profile.fullName} waving hello`}
-            />
-            <p className={s.stageBadge}>
-              <strong>{profile.fullName}</strong>
-              <span>{profile.agency}</span>
-            </p>
-          </div>
-        ) : null}
-
-        <div className={`${s.heroBody} ${profile.heroVideo ? s.heroBodyWide : ""}`}>
-          {profile.heroVideo ? null : (
-            <figure className={s.portrait}>
-              <img src={profile.photo} alt={`${profile.fullName}, ${profile.agency}`} width={1000} height={1500} />
-              <figcaption className={s.badge}>
-                <strong>{profile.fullName}</strong>
-                <span>{profile.agency}</span>
-              </figcaption>
-            </figure>
-          )}
-
-          <div className={s.heroText}>
-            <p className={s.kicker}>{profile.areas.join(" · ")}</p>
-            <p className={s.tagline}>{profile.tagline}</p>
-            <ul className={s.chips}>
-              {profile.specialties.map((x) => (
-                <li key={x}>{x}</li>
-              ))}
-            </ul>
-            <div className={s.actions}>
-              {wa && (
-                <a className={s.btnPrimary} href={wa} target="_blank" rel="noopener noreferrer">
-                  WhatsApp me
-                </a>
-              )}
-              <a className={s.btnGhost} href="#listings">
-                See my listings ↓
+      <section id="about" className={s.intro}>
+        <div className={s.introCard}>
+          <p className={s.kicker}>{profile.agency}</p>
+          <p className={s.tagline}>{profile.tagline}</p>
+          <ul className={s.chips}>
+            {profile.specialties.map((x) => (
+              <li key={x}>{x}</li>
+            ))}
+          </ul>
+          <div className={s.actions}>
+            {wa && (
+              <a className={s.btnPrimary} href={wa} target="_blank" rel="noopener noreferrer">
+                WhatsApp me
               </a>
-            </div>
+            )}
+            <a className={s.btnGhost} href="#listings">
+              See my listings ↓
+            </a>
           </div>
         </div>
-
-        <aside className={s.sticky} aria-hidden="true">
-          {profile.stickyNote ?? "Let’s find somewhere warm."}
-        </aside>
+        <figure className={s.photoCard}>
+          <img src={profile.photo} alt={`${profile.fullName}, ${profile.agency}`} width={1000} height={1500} loading="lazy" />
+          <figcaption>The real {profile.firstName} 👋</figcaption>
+        </figure>
       </section>
 
       <div className={s.marquee} aria-label="Areas I cover">
