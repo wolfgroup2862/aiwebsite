@@ -78,7 +78,13 @@ export default function TeamPage() {
         />
 
         <div className={s.heroText}>
-          <h1 className={s.hello}>Hello,</h1>
+          <h1 className={s.hello} aria-label="Hello,">
+            {Array.from("Hello,").map((c, i) => (
+              <span key={i} aria-hidden="true" style={{ "--i": i } as React.CSSProperties}>
+                {c}
+              </span>
+            ))}
+          </h1>
           <p className={s.lede}>
             We help you find the right property
             <br />
