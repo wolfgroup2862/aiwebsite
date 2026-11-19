@@ -3,6 +3,7 @@ import { PROFILE as MANDY } from "../mandy/profile";
 import { PROFILE as WILSON } from "../wilson/profile";
 import type { Profile } from "../_agent/AgentPage";
 import TeamHero, { type HeroMember } from "./TeamHero";
+import { TEAM_LISTINGS } from "./listings";
 import s from "./team.module.css";
 
 // Team landing page (warm studio style). Click a person in the hero photo →
@@ -61,6 +62,7 @@ export default function TeamPage() {
               {m.profile.firstName}
             </a>
           ))}
+          {TEAM_LISTINGS.length > 0 && <a href="#properties">Properties</a>}
         </nav>
         <a href="#contact" className={s.navCta}>
           Get in Touch <span aria-hidden="true">→</span>
@@ -134,6 +136,37 @@ export default function TeamPage() {
           </section>
         );
       })}
+
+      {TEAM_LISTINGS.length > 0 && (
+        <section id="properties" className={s.listings}>
+          <p className={s.kicker}>Commercial · For sale</p>
+          <h2 className={s.listingsTitle}>
+            Properties<span>.</span>
+          </h2>
+          <div className={s.listingGrid}>
+            {TEAM_LISTINGS.map((l, i) => (
+              <article key={i} className={s.listing}>
+                <div className={s.listingImg}>
+                  {l.image ? <img src={l.image} alt={l.title} loading="lazy" /> : <span>{l.type}</span>}
+                  <em>{l.type}</em>
+                </div>
+                <div className={s.listingBody}>
+                  <p className={s.listingLoc}>{l.location}</p>
+                  <h3>{l.title}</h3>
+                  <p className={s.listingPrice}>{l.price}</p>
+                  <ul className={s.listingFacts}>
+                    {l.builtUp && <li>Built-up {l.builtUp}</li>}
+                    {l.land && <li>Land {l.land}</li>}
+                    {l.psf && <li>{l.psf}</li>}
+                    {l.tenure && <li>{l.tenure}</li>}
+                    {l.notes?.map((n) => <li key={n}>{n}</li>)}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section id="contact" className={s.contact}>
         <h2>
