@@ -5,13 +5,11 @@ Next.js site for the Wolf Group team (The Roof Realty / TRR).
 | Page | What it is |
 | --- | --- |
 | `/` (same as `/team`) | Team home: waving video of Mandy & Wilson; click a person and they jump down to their intro. Wilson's properties follow his intro. |
-| `/mandy` | Mandy's own page |
-| `/wilson` | Wilson's own page (includes his listings) |
 
 ## Where to edit
 
 - `app/mandy/profile.ts`, `app/wilson/profile.ts` — each agent's details (name, areas, intro, WhatsApp…)
-- `app/_agent/wilson-listings.ts` — Wilson's properties (used on `/team` and `/wilson`; hidden while empty)
+- `app/_agent/wilson-listings.ts` — Wilson's properties (shown on the team page after Wilson; hidden while empty)
 - `public/agent/` — photos, cut-outs and the hero video
 
 Pages are set to `noindex` until the placeholder details are filled in.
