@@ -19,6 +19,7 @@ export type Profile = {
   whatsapp: string; // digits only, e.g. "60123456789". Empty = button hidden.
   photo: string;
   realImage: string; // background-removed photo (PNG/WebP) shown first in the hero
+  halfImage?: string; // half-body cut-out for portrait frames (team page); falls back to realImage
   heroImage?: string; // background-removed "hero character" version revealed on tap
 };
 export type Listing = { title: string; area: string; type: string; price: string; image?: string; facts?: string[] };

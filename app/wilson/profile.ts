@@ -15,6 +15,7 @@ export const PROFILE: Profile = {
   whatsapp: "", // TODO
   photo: "/agent/wilson.jpg",
   realImage: "/agent/wilson-real.webp",
+  halfImage: "/agent/wilson-half.webp",
   heroImage: "/agent/wilson-hero.webp",
 };
 
