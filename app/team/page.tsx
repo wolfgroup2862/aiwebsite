@@ -164,9 +164,6 @@ export default function TeamPage() {
                     WhatsApp {p.firstName}
                   </a>
                 )}
-                <a className={s.btnLine} href={`/${m.id}`}>
-                  View {p.firstName}&rsquo;s page →
-                </a>
                 <a className={s.back} href="#top">
                   ↑ Back to photo
                 </a>
