@@ -1,7 +1,8 @@
-// Commercial properties for sale shown in the "Properties" section of /team
-// (after Wilson). Copy the details in here — no links out to iProperty.
+// Wilson Yap's commercial properties for sale — ONE list used by both
+// /team (the "Properties" section after Wilson) and /wilson (his listings).
+// Copy the details in here — no links out to iProperty.
 // Photos go in public/agent/listings/ (e.g. "/agent/listings/01.jpg").
-// The section and its nav link stay hidden while this list is empty.
+// The sections and their nav links stay hidden while this list is empty.
 
 export type TeamListing = {
   title: string;
@@ -16,4 +17,4 @@ export type TeamListing = {
   image?: string;
 };
 
-export const TEAM_LISTINGS: TeamListing[] = [];
+export const WILSON_LISTINGS: TeamListing[] = [];

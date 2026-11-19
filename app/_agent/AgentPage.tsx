@@ -21,7 +21,7 @@ export type Profile = {
   realImage: string; // background-removed photo (PNG/WebP) shown first in the hero
   heroImage?: string; // background-removed "hero character" version revealed on tap
 };
-export type Listing = { title: string; area: string; type: string; price: string; image?: string };
+export type Listing = { title: string; area: string; type: string; price: string; image?: string; facts?: string[] };
 export type Note = { tag: string; tone: "lime" | "peach" | "sky" | "lilac"; title: string; body: string };
 
 export function agentMetadata(profile: Profile, path: string): Metadata {
@@ -48,7 +48,7 @@ export default function AgentPage({ profile, listings, notes }: { profile: Profi
           <span>.</span>
         </a>
         <nav aria-label="Agent page sections" className={s.navLinks}>
-          <a href="#listings">Listings</a>
+          {listings.length > 0 && <a href="#listings">Listings</a>}
           <a href="#notes">Notes</a>
           <a href="#contact" className={s.navCta}>Contact</a>
         </nav>
@@ -81,9 +81,11 @@ export default function AgentPage({ profile, listings, notes }: { profile: Profi
                 WhatsApp me
               </a>
             )}
-            <a className={s.btnGhost} href="#listings">
-              See my listings ↓
-            </a>
+            {listings.length > 0 && (
+              <a className={s.btnGhost} href="#listings">
+                See my listings ↓
+              </a>
+            )}
           </div>
         </div>
         <figure className={s.photoCard}>
@@ -107,33 +109,42 @@ export default function AgentPage({ profile, listings, notes }: { profile: Profi
         <p className={s.aboutText}>{profile.intro}</p>
       </section>
 
-      <section id="listings" className={s.section}>
-        <div className={s.sectionHead}>
-          <p className={s.label}>Selected listings</p>
-          <h2>
-            Properties I&rsquo;m showing
-            <br />
-            <span>with heart &amp; homework.</span>
-          </h2>
-        </div>
-        <div className={s.cards}>
-          {listings.map((l, i) => (
-            <article key={i} className={s.card}>
-              <div className={s.cardImg} data-tone={i % 3}>
-                {l.image ? <img src={l.image} alt={l.title} loading="lazy" /> : <span>Photo coming soon</span>}
-              </div>
-              <div className={s.cardBody}>
-                <p className={s.cardType}>{l.type}</p>
-                <h3>{l.title}</h3>
-                <p className={s.cardMeta}>
-                  <span>{l.area}</span>
-                  <strong>{l.price}</strong>
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      {listings.length > 0 && (
+        <section id="listings" className={s.section}>
+          <div className={s.sectionHead}>
+            <p className={s.label}>Selected listings</p>
+            <h2>
+              Properties I&rsquo;m showing
+              <br />
+              <span>with heart &amp; homework.</span>
+            </h2>
+          </div>
+          <div className={s.cards}>
+            {listings.map((l, i) => (
+              <article key={i} className={s.card}>
+                <div className={s.cardImg} data-tone={i % 3}>
+                  {l.image ? <img src={l.image} alt={l.title} loading="lazy" /> : <span>Photo coming soon</span>}
+                </div>
+                <div className={s.cardBody}>
+                  <p className={s.cardType}>{l.type}</p>
+                  <h3>{l.title}</h3>
+                  <p className={s.cardMeta}>
+                    <span>{l.area}</span>
+                    <strong>{l.price}</strong>
+                  </p>
+                  {l.facts && l.facts.length > 0 && (
+                    <ul className={s.cardFacts}>
+                      {l.facts.map((f) => (
+                        <li key={f}>{f}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section id="notes" className={s.section}>
         <div className={s.sectionHead}>

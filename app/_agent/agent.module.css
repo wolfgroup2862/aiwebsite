@@ -397,6 +397,8 @@
 .cardBody { padding: 18px 20px 22px; }
 .cardType { margin: 0; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 .cardBody h3 { margin: 8px 0 14px; font-size: 1.25rem; letter-spacing: -0.02em; }
+.cardFacts { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; padding: 0; }
+.cardFacts li { padding: 3px 9px; border: 1px solid var(--line); border-radius: 999px; font-size: 0.74rem; color: #cfcce3; }
 .cardMeta { display: flex; justify-content: space-between; gap: 12px; margin: 0; font-size: 0.9rem; color: #cfcce3; }
 
 .notes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }

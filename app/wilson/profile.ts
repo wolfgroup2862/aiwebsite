@@ -1,4 +1,5 @@
 import type { Listing, Note, Profile } from "../_agent/AgentPage";
+import { WILSON_LISTINGS } from "../_agent/wilson-listings";
 
 // Wilson's details — the ONLY file to edit for his page. "TODO" = placeholder.
 export const PROFILE: Profile = {
@@ -17,12 +18,15 @@ export const PROFILE: Profile = {
   heroImage: "/agent/wilson-hero.webp",
 };
 
-// TODO: replace with his real listings.
-export const LISTINGS: Listing[] = [
-  { title: "Listing title", area: "Area", type: "Property type · For sale", price: "RM —" },
-  { title: "Listing title", area: "Area", type: "Property type · For sale", price: "RM —" },
-  { title: "Listing title", area: "Area", type: "Property type · For rent", price: "RM — / month" },
-];
+// His listings come from the shared list (also shown on /team).
+export const LISTINGS: Listing[] = WILSON_LISTINGS.map((l) => ({
+  title: l.title,
+  area: l.location,
+  type: `${l.type} · For sale`,
+  price: l.price,
+  image: l.image,
+  facts: [l.builtUp && `Built-up ${l.builtUp}`, l.land && `Land ${l.land}`, l.psf, l.tenure].filter((x): x is string => Boolean(x)),
+}));
 
 // TODO: confirm or replace (general tips, not client data).
 export const NOTES: Note[] = [

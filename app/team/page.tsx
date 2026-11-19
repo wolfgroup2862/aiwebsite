@@ -3,7 +3,7 @@ import { PROFILE as MANDY } from "../mandy/profile";
 import { PROFILE as WILSON } from "../wilson/profile";
 import type { Profile } from "../_agent/AgentPage";
 import TeamHero, { type HeroMember } from "./TeamHero";
-import { TEAM_LISTINGS } from "./listings";
+import { WILSON_LISTINGS as TEAM_LISTINGS } from "../_agent/wilson-listings";
 import s from "./team.module.css";
 
 // Team landing page (warm studio style). Click a person in the hero photo →
