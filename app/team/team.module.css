@@ -24,7 +24,9 @@
   align-items: center;
   gap: 24px;
   padding: 16px clamp(16px, 3vw, 44px);
-  background: linear-gradient(rgba(40, 26, 14, 0.55), transparent);
+  background: rgba(40, 26, 14, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: #fff;
 }
 .brand img { height: 30px; width: auto; filter: brightness(0) invert(1); }
