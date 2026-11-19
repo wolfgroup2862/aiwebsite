@@ -4,7 +4,7 @@ import { WILSON_LISTINGS } from "../_agent/wilson-listings";
 // Wilson's details — the ONLY file to edit for his page. "TODO" = placeholder.
 export const PROFILE: Profile = {
   firstName: "Wilson",
-  fullName: "Wilson", // TODO: full name?
+  fullName: "Wilson Yap",
   chineseName: "", // TODO: optional
   agency: "The Roof Realty (TRR) · Wolf Group",
   tagline: "Straight answers and real numbers for buyers, sellers and tenants — no pressure, just good homework.", // TODO: confirm wording
