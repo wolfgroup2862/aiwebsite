@@ -3,7 +3,7 @@ import type { Listing, Note, Profile } from "../_agent/AgentPage";
 // Mandy's details — the ONLY file to edit for her page. "TODO" = placeholder.
 export const PROFILE: Profile = {
   firstName: "Mandy",
-  fullName: "Mandy",
+  fullName: "Mandy Lee",
   chineseName: "", // TODO: optional, e.g. "陈美玲"
   agency: "The Roof Realty (TRR) · Wolf Group",
   tagline: "Commercial and property advice across Puchong, Bukit Jalil and PJ — honest numbers, clear answers and zero pressure.", // TODO: confirm wording

@@ -143,7 +143,7 @@ export default function TeamPage() {
                 {String(i + 1).padStart(2, "0")} · {p.agency}
               </p>
               <h2 className={s.name}>
-                {p.firstName}
+                {p.fullName}
                 <span>.</span>
               </h2>
               <p className={s.tagline}>{p.tagline}</p>
