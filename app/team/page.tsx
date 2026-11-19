@@ -136,7 +136,7 @@ export default function TeamPage() {
         const section = (
           <section id={m.id} className={`${s.member} ${i % 2 ? s.flip : ""}`}>
             <figure className={s.portrait} data-landing>
-              <img src={p.realImage} alt={`${p.fullName}`} loading="lazy" />
+              <img src={p.halfImage ?? p.realImage} alt={`${p.fullName}`} loading="lazy" />
             </figure>
             <div className={s.memberText}>
               <p className={s.kicker}>
