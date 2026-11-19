@@ -18,11 +18,7 @@ export const PROFILE: Profile = {
 };
 
 // TODO: replace with her real listings (photo in public/agent/, title, area, price).
-export const LISTINGS: Listing[] = [
-  { title: "Listing title", area: "Area", type: "Condominium · For sale", price: "RM —" },
-  { title: "Listing title", area: "Area", type: "Terrace house · For sale", price: "RM —" },
-  { title: "Listing title", area: "Area", type: "Serviced residence · For rent", price: "RM — / month" },
-];
+export const LISTINGS: Listing[] = []; // TODO: add her listings (section stays hidden while empty)
 
 // TODO: confirm or replace these short notes (general tips, not client data).
 export const NOTES: Note[] = [
