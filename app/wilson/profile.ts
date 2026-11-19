@@ -10,8 +10,8 @@ export const PROFILE: Profile = {
   tagline: "Straight answers and real numbers for buyers, sellers and tenants — no pressure, just good homework.", // TODO: confirm wording
   intro:
     "Tell visitors in two or three sentences who you are, which areas you know best, and why people enjoy working with you.", // TODO
-  areas: ["Area 1", "Area 2", "Area 3"], // TODO
-  specialties: ["Specialty 1", "Specialty 2"], // TODO
+  areas: ["Puchong", "Bukit Jalil", "Petaling Jaya"],
+  specialties: ["Puchong commercial", "Bukit Jalil", "Petaling Jaya (PJ)"],
   whatsapp: "", // TODO
   photo: "/agent/wilson.jpg",
   realImage: "/agent/wilson-real.webp",
