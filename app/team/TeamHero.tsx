@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type CSSProperties, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import s from "./team.module.css";
 
 export type HeroMember = {
@@ -32,6 +32,36 @@ export default function TeamHero({
 }) {
   const stageRef = useRef<HTMLDivElement>(null);
   const busy = useRef(false);
+
+  // keep the speech bubbles inside the screen (the photo is cropped at the sides on narrow screens)
+  const [shifts, setShifts] = useState<Record<string, number>>({});
+  useEffect(() => {
+    const fit = () => {
+      const vw = document.documentElement.clientWidth;
+      const next: Record<string, number> = {};
+      stageRef.current?.querySelectorAll<HTMLElement>("[data-bubble]").forEach((b) => {
+        const parent = (b.offsetParent as HTMLElement | null)?.getBoundingClientRect();
+        if (!parent) return;
+        const current = parseFloat(b.style.marginLeft) || 0;
+        // layout box without the current shift (ignores the pop-in scale animation)
+        const left = parent.left + b.offsetLeft - current;
+        const right = left + b.offsetWidth;
+        const pad = 12;
+        let shift = 0;
+        if (left < pad) shift = pad - left;
+        else if (right > vw - pad) shift = vw - pad - right;
+        next[b.dataset.bubble as string] = Math.round(shift);
+      });
+      setShifts(next);
+    };
+    fit();
+    const t = window.setTimeout(fit, 300);
+    window.addEventListener("resize", fit);
+    return () => {
+      window.clearTimeout(t);
+      window.removeEventListener("resize", fit);
+    };
+  }, []);
 
   const jump = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
     const section = document.getElementById(id);
@@ -122,7 +152,6 @@ export default function TeamHero({
       section.classList.add(s.arrived);
       requestAnimationFrame(() => clone.remove());
       stageRef.current?.classList.remove(s.dim);
-      vid?.play().catch(() => {});
       person.classList.remove(s.lifted);
       history.replaceState(null, "", `#${id}`);
       busy.current = false;
@@ -134,7 +163,7 @@ export default function TeamHero({
     <div ref={stageRef} className={`${s.stage} ${video ? s.hasVideo : ""}`} style={{ "--ar": aspect } as CSSProperties}>
       {video ? (
         // AI-generated clip of the same shot where they wave; the photo is its poster
-        <video className={s.photo} poster={photo} autoPlay muted loop playsInline preload="auto" aria-label="Mandy and Wilson waving hello">
+        <video className={s.photo} poster={photo} autoPlay muted playsInline preload="auto" aria-label="Mandy and Wilson waving hello">
           <source src={video} type="video/mp4" />
           <source src={video.replace(/\.mp4$/, ".webm")} type="video/webm" />
         </video>
@@ -155,6 +184,7 @@ export default function TeamHero({
           <img src={m.cutout} alt="" draggable={false} />
           <span
             className={s.bubble}
+            data-bubble={m.id}
             style={
               {
                 "--bl": `${m.bubble.left}%`,
@@ -162,6 +192,7 @@ export default function TeamHero({
                 "--mbl": `${(m.bubble.mobile ?? m.bubble).left}%`,
                 "--mbt": `${(m.bubble.mobile ?? m.bubble).top}%`,
                 animationDelay: `${0.9 + i * 0.7}s`,
+                marginLeft: `${shifts[m.id] ?? 0}px`,
               } as CSSProperties
             }
             aria-hidden="true"
